@@ -3,8 +3,7 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 import { crud } from "@/services/baseURL";
-import useLogin from "../auth/login";
-// import Cookies from "js-cookie";
+import useLogin from "@/stores/auth/login";
 
 type Props = {
   page?: number;
@@ -13,8 +12,14 @@ type Props = {
 };
 
 type Store = {
-  dtKecamatan: any;
-  setKecamatan: ({ page = 1, limit = 10, search }: Props) => Promise<{
+  dtPangkat: any;
+  showPangkat: any;
+  setPangkat: ({ page = 1, limit = 10, search }: Props) => Promise<{
+    status: string;
+    data?: {};
+    error?: {};
+  }>;
+  setShowPangkat: (id: number | string) => Promise<{
     status: string;
     data?: {};
     error?: {};
@@ -29,15 +34,16 @@ type Store = {
   ) => Promise<{ status: string; data?: any; error?: any }>;
 };
 
-const useKecamatan = create(
+const usePangkat = create(
   devtools<Store>((set, get) => ({
-    dtKecamatan: [],
-    setKecamatan: async ({ page = 1, limit = 10, search }) => {
+    dtPangkat: [],
+    showPangkat: [],
+    setPangkat: async ({ page = 1, limit = 10, search }) => {
       try {
         const token = await useLogin.getState().setToken();
         const response = await crud({
           method: "get",
-          url: `/kecamatan`,
+          url: `/personalia/pangkat`,
           headers: { Authorization: `Bearer ${token}` },
           params: {
             limit,
@@ -45,7 +51,27 @@ const useKecamatan = create(
             search,
           },
         });
-        set((state) => ({ ...state, dtKecamatan: response.data.data }));
+        set((state) => ({ ...state, dtPangkat: response.data.data }));
+        return {
+          status: "berhasil",
+          data: response.data,
+        };
+      } catch (error: any) {
+        return {
+          status: "error",
+          error: error.response?.data,
+        };
+      }
+    },
+    setShowPangkat: async (id) => {
+      try {
+        const token = await useLogin.getState().setToken();
+        const response = await crud({
+          method: "get",
+          url: `/personalia/pangkat/${id}`,
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        set((state) => ({ ...state, showPangkat: response.data.data }));
         return {
           status: "berhasil",
           data: response.data,
@@ -62,17 +88,17 @@ const useKecamatan = create(
         const token = await useLogin.getState().setToken();
         const res = await crud({
           method: "post",
-          url: `/kecamatan`,
+          url: `/personalia/pangkat`,
           headers: {
             Authorization: `Bearer ${token}`,
           },
           data: row,
         });
         set((prevState) => ({
-          dtKecamatan: {
-            last_page: prevState.dtKecamatan.last_page,
-            current_page: prevState.dtKecamatan.current_page,
-            data: [res.data.data, ...prevState.dtKecamatan.data],
+          dtPangkat: {
+            last_page: prevState.dtPangkat.last_page,
+            current_page: prevState.dtPangkat.current_page,
+            data: [res.data.data, ...prevState.dtPangkat.data],
           },
         }));
         return {
@@ -91,14 +117,14 @@ const useKecamatan = create(
         const token = await useLogin.getState().setToken();
         const res = await crud({
           method: "delete",
-          url: `/kecamatan/${id}`,
+          url: `/personalia/pangkat/${id}`,
           headers: { Authorization: `Bearer ${token}` },
         });
         set((prevState) => ({
-          dtKecamatan: {
-            last_page: prevState.dtKecamatan.last_page,
-            current_page: prevState.dtKecamatan.current_page,
-            data: prevState.dtKecamatan.data.filter(
+          dtPangkat: {
+            last_page: prevState.dtPangkat.last_page,
+            current_page: prevState.dtPangkat.current_page,
+            data: prevState.dtPangkat.data.filter(
               (item: any) => item.id !== id
             ),
           },
@@ -119,15 +145,15 @@ const useKecamatan = create(
         const token = await useLogin.getState().setToken();
         const response = await crud({
           method: "PUT",
-          url: `/kecamatan/${id}`,
+          url: `/personalia/pangkat/${id}`,
           headers: { Authorization: `Bearer ${token}` },
           data: row,
         });
         set((prevState) => ({
-          dtKecamatan: {
-            last_page: prevState.dtKecamatan.last_page,
-            current_page: prevState.dtKecamatan.current_page,
-            data: prevState.dtKecamatan.data.map((item: any) => {
+          dtPangkat: {
+            last_page: prevState.dtPangkat.last_page,
+            current_page: prevState.dtPangkat.current_page,
+            data: prevState.dtPangkat.data.map((item: any) => {
               if (item.id === id) {
                 return {
                   ...item,
@@ -153,4 +179,4 @@ const useKecamatan = create(
   }))
 );
 
-export default useKecamatan;
+export default usePangkat;

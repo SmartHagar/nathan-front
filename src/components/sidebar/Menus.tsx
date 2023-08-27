@@ -30,6 +30,40 @@ const menus = [
       },
     ],
   },
+  {
+    name: "Pangkat",
+    href: "/pangkat",
+    icon: <BsHouseDoorFill />,
+  },
+  {
+    name: "Jabatan",
+    href: "/jabatan",
+    icon: <BsHouseDoorFill />,
+  },
+  {
+    name: "Personalia",
+    href: "#",
+    slug: "personalia",
+    icon: <BsLampFill />,
+    subMenus: [
+      {
+        name: "Jenis",
+        href: "/personalia/jenis",
+      },
+      {
+        name: "Surat Masuk",
+        href: "/personalia/surat/masuk",
+      },
+      {
+        name: "Surat Keluar",
+        href: "/personalia/surat/keluar",
+      },
+      {
+        name: "Dokumen Lainnya",
+        href: "/personalia/dokumen",
+      },
+    ],
+  },
 ];
 // list menu stackholder
 const stackholderMenus = [
