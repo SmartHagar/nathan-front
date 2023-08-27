@@ -9,18 +9,18 @@ type Props = {
   page?: number;
   limit?: number;
   search?: string;
-  alumni_id?: number | string;
+  jenis_id?: number | string;
 };
 
 type Store = {
-  dtDaftar: any;
-  showDaftar: any;
-  setDaftar: ({ page = 1, limit = 10, search, alumni_id }: Props) => Promise<{
+  dtJenis: any;
+  showJenis: any;
+  setJenis: ({ page = 1, limit = 10, search, jenis_id }: Props) => Promise<{
     status: string;
     data?: {};
     error?: {};
   }>;
-  setShowDaftar: ({ alumni_id }: Props) => Promise<{
+  setShowJenis: ({ jenis_id }: Props) => Promise<{
     status: string;
     data?: {};
     error?: {};
@@ -35,25 +35,25 @@ type Store = {
   ) => Promise<{ status: string; data?: any; error?: any }>;
 };
 
-const useDaftar = create(
+const useJenis = create(
   devtools<Store>((set, get) => ({
-    dtDaftar: [],
-    showDaftar: [],
-    setDaftar: async ({ page = 1, limit = 10, alumni_id, search }) => {
+    dtJenis: [],
+    showJenis: [],
+    setJenis: async ({ page = 1, limit = 10, jenis_id, search }) => {
       try {
         const token = await useLogin.getState().setToken();
         const response = await crud({
           method: "get",
-          url: `/daftar-pengguna`,
+          url: `/tata_usaha/jenis`,
           headers: { Authorization: `Bearer ${token}` },
           params: {
             limit,
             page,
             search,
-            alumni_id,
+            jenis_id,
           },
         });
-        set((state) => ({ ...state, dtDaftar: response.data.data }));
+        set((state) => ({ ...state, dtJenis: response.data.data }));
         return {
           status: "berhasil",
           data: response.data,
@@ -65,15 +65,15 @@ const useDaftar = create(
         };
       }
     },
-    setShowDaftar: async ({ alumni_id }) => {
+    setShowJenis: async ({ jenis_id }) => {
       try {
         const token = await useLogin.getState().setToken();
         const response = await crud({
           method: "get",
-          url: `/daftar-pengguna/${alumni_id}`,
+          url: `/tata_usaha/jenis/${jenis_id}`,
           headers: { Authorization: `Bearer ${token}` },
         });
-        set((state) => ({ ...state, showDaftar: response.data.data }));
+        set((state) => ({ ...state, showJenis: response.data.data }));
         return {
           status: "berhasil",
           data: response.data,
@@ -90,17 +90,17 @@ const useDaftar = create(
         const token = await useLogin.getState().setToken();
         const res = await crud({
           method: "post",
-          url: `/daftar-pengguna`,
+          url: `/tata_usaha/jenis`,
           headers: {
             Authorization: `Bearer ${token}`,
           },
           data: row,
         });
         set((prevState) => ({
-          dtDaftar: {
-            last_page: prevState.dtDaftar.last_page,
-            current_page: prevState.dtDaftar.current_page,
-            data: [res.data.data, ...prevState.dtDaftar.data],
+          dtJenis: {
+            last_page: prevState.dtJenis.last_page,
+            current_page: prevState.dtJenis.current_page,
+            data: [res.data.data, ...prevState.dtJenis.data],
           },
         }));
         return {
@@ -119,14 +119,14 @@ const useDaftar = create(
         const token = await useLogin.getState().setToken();
         const res = await crud({
           method: "delete",
-          url: `/daftar-pengguna/${id}`,
+          url: `/tata_usaha/jenis/${id}`,
           headers: { Authorization: `Bearer ${token}` },
         });
         set((prevState) => ({
-          dtDaftar: {
-            last_page: prevState.dtDaftar.last_page,
-            current_page: prevState.dtDaftar.current_page,
-            data: prevState.dtDaftar.data.filter((item: any) => item.id !== id),
+          dtJenis: {
+            last_page: prevState.dtJenis.last_page,
+            current_page: prevState.dtJenis.current_page,
+            data: prevState.dtJenis.data.filter((item: any) => item.id !== id),
           },
         }));
         return {
@@ -145,15 +145,15 @@ const useDaftar = create(
         const token = await useLogin.getState().setToken();
         const response = await crud({
           method: "PUT",
-          url: `/daftar-pengguna/${id}`,
+          url: `/tata_usaha/jenis/${id}`,
           headers: { Authorization: `Bearer ${token}` },
           data: row,
         });
         set((prevState) => ({
-          dtDaftar: {
-            last_page: prevState.dtDaftar.last_page,
-            current_page: prevState.dtDaftar.current_page,
-            data: prevState.dtDaftar.data.map((item: any) => {
+          dtJenis: {
+            last_page: prevState.dtJenis.last_page,
+            current_page: prevState.dtJenis.current_page,
+            data: prevState.dtJenis.data.map((item: any) => {
               if (item.id === id) {
                 return {
                   ...item,
@@ -179,4 +179,4 @@ const useDaftar = create(
   }))
 );
 
-export default useDaftar;
+export default useJenis;

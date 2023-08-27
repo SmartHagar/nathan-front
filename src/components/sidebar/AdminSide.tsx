@@ -17,7 +17,6 @@ const AdminSide = () => {
   useEffect(() => {
     // split pathname by /
     const second = pathname?.split("/")[1];
-    console.log(second);
     setHeadMenu(second);
     return () => {};
   }, [pathname]);
@@ -78,8 +77,6 @@ const AdminSide = () => {
                 );
               } else {
                 const open = headMenu === slug;
-                console.log({ open });
-
                 return (
                   <div key={index}>
                     <details
@@ -119,8 +116,9 @@ const AdminSide = () => {
                           <div className="ml-4" key={index}>
                             <Link
                               href={item.href}
-                              className={`flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg hover:bg-primary/50 hover:text-gray-200 ${
-                                isActive && "btn-primary text-primary"
+                              className={`flex items-center mx-3 py-2 transition-colors duration-300 transform rounded-lg hover:bg-primary/50 hover:text-gray-200 ${
+                                isActive &&
+                                "border-b-2 border-primary text-primary bg-white/50"
                               }`}
                             >
                               <span className="mx-2 text-sm font-medium">

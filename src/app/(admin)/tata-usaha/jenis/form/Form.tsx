@@ -4,10 +4,10 @@ import ButtonPrimary from "@/components/button/ButtonPrimary";
 import InputTextDefault from "@/components/input/InputTextDefault";
 import ModalDefault from "@/components/modal/ModalDefault";
 import toastShow from "@/utils/toast-show";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import BodyForm from "./BodyForm";
-import useDaftar from "@/stores/crud/tataUsaha/Daftar";
+import useJenis from "@/stores/crud/tataUsaha/Jenis";
 
 type Props = {
   showModal: boolean;
@@ -17,16 +17,12 @@ type Props = {
 
 type Inputs = {
   id: number | string;
-  pekerjaan_id: number | string;
   nama: string;
-  email: string;
-  no_hp: string;
-  jabatan: string;
 };
 
 const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
   // store
-  const { addData, updateData } = useDaftar();
+  const { addData, updateData } = useJenis();
   // hook form
   const {
     register,
@@ -41,10 +37,6 @@ const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
   const resetForm = () => {
     setValue("id", "");
     setValue("nama", "");
-    setValue("email", "");
-    setValue("pekerjaan_id", "");
-    setValue("no_hp", "");
-    setValue("jabatan", "");
   };
 
   // data edit
@@ -52,10 +44,6 @@ const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
     if (dtEdit) {
       setValue("id", dtEdit.id);
       setValue("nama", dtEdit.nama);
-      setValue("email", dtEdit.email);
-      setValue("pekerjaan_id", dtEdit.pekerjaan_id);
-      setValue("no_hp", dtEdit.no_hp);
-      setValue("jabatan", dtEdit.jabatan);
     } else {
       resetForm();
     }

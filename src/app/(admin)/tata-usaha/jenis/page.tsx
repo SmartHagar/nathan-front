@@ -6,7 +6,7 @@ import ShowData from "./ShowData";
 import ButtonPrimary from "@/components/button/ButtonPrimary";
 import Form from "./form/Form";
 import ModalDelete from "@/components/modal/ModalDelete";
-import useDaftar from "@/stores/crud/tataUsaha/Daftar";
+import useJenis from "@/stores/crud/tataUsaha/Jenis";
 import { Toaster } from "react-hot-toast";
 import toastShow from "@/utils/toast-show";
 import InputTextSearch from "@/components/input/InputTextSerch";
@@ -17,9 +17,9 @@ type Delete = {
   isDelete: boolean;
 };
 
-const Daftar = () => {
+const Jenis = () => {
   // store
-  const { removeData } = useDaftar();
+  const { removeData } = useJenis();
   // state
   const [showModal, setShowModal] = useState(false);
   const [showDelete, setShowDelete] = useState<boolean>(false);
@@ -63,13 +63,13 @@ const Daftar = () => {
           setDelete={setDelete}
         />
         <div className="mb-4 flex justify-between">
-          <p>Silahkan Mengolah data Daftar Pengguna</p>
+          <p>Silahkan Mengolah data Jenis TataUsaha</p>
           <div>
-            <ButtonPrimary text="Tambah Daftar" onClick={handleTambah} />
+            <ButtonPrimary text="Tambah Jenis" onClick={handleTambah} />
           </div>
         </div>
         <InputTextSearch
-          placeholder="Cari Daftar"
+          placeholder="Cari Jenis"
           onChange={(e) => setSearch(e)}
         />
       </div>
@@ -79,4 +79,4 @@ const Daftar = () => {
   );
 };
 
-export default Daftar;
+export default Jenis;

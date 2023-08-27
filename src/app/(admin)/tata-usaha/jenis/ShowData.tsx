@@ -3,7 +3,7 @@
 import LoadingSpiner from "@/components/loading/LoadingSpiner";
 import PaginationDefault from "@/components/pagination/PaginationDefault";
 import TablesDefault from "@/components/tables/TablesDefault";
-import useDaftar from "@/stores/crud/tataUsaha/Daftar";
+import useJenis from "@/stores/crud/tataUsaha/Jenis";
 import React, { FC, useEffect, useState } from "react";
 
 type DeleteProps = {
@@ -18,14 +18,14 @@ type Props = {
 };
 
 const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
-  const { setDaftar, dtDaftar } = useDaftar();
+  const { setJenis, dtJenis } = useJenis();
   // state
   const [page, setPage] = useState<number>(1);
   const [limit, setLimit] = useState<number>(10);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const fetchDataDaftar = async () => {
-    const res = await setDaftar({
+  const fetchDataJenis = async () => {
+    const res = await setJenis({
       page,
       limit,
       search,
@@ -33,7 +33,7 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
     setIsLoading(false);
   };
   useEffect(() => {
-    fetchDataDaftar();
+    fetchDataJenis();
 
     return () => {};
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -41,29 +41,13 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
   // ketika search berubah
   useEffect(() => {
     setPage(1);
-    fetchDataDaftar();
+    fetchDataJenis();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search]);
 
   // table
-  const headTable = [
-    "No",
-    "Alumni",
-    "Nama Instansi",
-    "Nama Pengguna",
-    "Email",
-    "No. Hp",
-    "Jabatan",
-    "Aksi",
-  ];
-  const tableBodies = [
-    "pekerjaan.alumni.nama",
-    "pekerjaan.nm_instansi",
-    "nama",
-    "email",
-    "no_hp",
-    "jabatan",
-  ];
+  const headTable = ["No", "Jenis Surat", "Aksi"];
+  const tableBodies = ["nama"];
   return (
     <div className="flex-1 flex-col max-w-full h-full overflow-auto">
       {isLoading ? (
@@ -74,7 +58,7 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
             <TablesDefault
               headTable={headTable}
               tableBodies={tableBodies}
-              dataTable={dtDaftar.data}
+              dataTable={dtJenis.data}
               page={page}
               limit={limit}
               setEdit={setEdit}
@@ -83,11 +67,11 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
               hapus={true}
             />
           </div>
-          {dtDaftar?.last_page > 1 && (
+          {dtJenis?.last_page > 1 && (
             <div className="mt-4">
               <PaginationDefault
-                currentPage={dtDaftar?.current_page}
-                totalPages={dtDaftar?.last_page}
+                currentPage={dtJenis?.current_page}
+                totalPages={dtJenis?.last_page}
                 setPage={setPage}
               />
             </div>

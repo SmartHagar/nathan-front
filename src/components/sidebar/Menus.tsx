@@ -13,12 +13,16 @@ const menus = [
     icon: <BsLampFill />,
     subMenus: [
       {
+        name: "Jenis",
+        href: "/tata-usaha/jenis",
+      },
+      {
         name: "Surat Masuk",
-        href: "/tata-usaha/suratMasuk",
+        href: "/tata-usaha/surat/masuk",
       },
       {
         name: "Surat Keluar",
-        href: "/tata-usaha/suratKeluar",
+        href: "/tata-usaha/surat/keluar",
       },
       {
         name: "Dokumen Lainnya",

@@ -13,8 +13,9 @@ const config: Config = {
       colors: {
         bg: "#FFD200",
         primary: "#FF7000",
-        secondary: "#16DB93",
+        secondary: "#FFA100",
         upload: "#EFEA5A",
+        link: "#007f5f",
       },
     },
   },
