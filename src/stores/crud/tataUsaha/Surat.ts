@@ -34,10 +34,22 @@ type Store = {
     id: number | string,
     data: any
   ) => Promise<{ status: string; data?: any; error?: any }>;
+  setFormData: any;
 };
 
 const useSurat = create(
   devtools<Store>((set, get) => ({
+    setFormData: (row: any) => {
+      const formData = new FormData();
+      formData.append("jenis_id", row.jenis_id);
+      formData.append("tipe", row.tipe);
+      formData.append("no_surat", row.no_surat);
+      formData.append("tgl_surat", row.tgl_surat);
+      formData.append("hal", row.hal);
+      formData.append("dari_ke", row.dari_ke);
+      formData.append("gambar", row.gambar);
+      return formData;
+    },
     dtSurat: [],
     showSurat: [],
     setSurat: async ({ page = 1, limit = 10, tipe, search }) => {
@@ -87,6 +99,7 @@ const useSurat = create(
       }
     },
     addData: async (row) => {
+      const formData = row?.gambar ? get().setFormData(row) : row;
       try {
         const token = await useLogin.getState().setToken();
         const res = await crud({
@@ -94,10 +107,11 @@ const useSurat = create(
           url: `/tata_usaha/surat`,
           headers: {
             Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
           },
-          data: row,
+          data: formData,
         });
-        set((prevState) => ({
+        set((prevState: any) => ({
           dtSurat: {
             last_page: prevState.dtSurat.last_page,
             current_page: prevState.dtSurat.current_page,
@@ -123,7 +137,7 @@ const useSurat = create(
           url: `/tata_usaha/surat/${id}`,
           headers: { Authorization: `Bearer ${token}` },
         });
-        set((prevState) => ({
+        set((prevState: any) => ({
           dtSurat: {
             last_page: prevState.dtSurat.last_page,
             current_page: prevState.dtSurat.current_page,
@@ -142,15 +156,28 @@ const useSurat = create(
       }
     },
     updateData: async (id, row) => {
+      delete row.id;
+      const formData = row?.gambar ? get().setFormData(row) : row;
+      const token = await useLogin.getState().setToken();
+      const headersImg = {
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${token}`,
+      };
       try {
-        const token = await useLogin.getState().setToken();
         const response = await crud({
-          method: "PUT",
           url: `/tata_usaha/surat/${id}`,
-          headers: { Authorization: `Bearer ${token}` },
-          data: row,
+          method: "post",
+          headers: row?.gambar
+            ? headersImg
+            : {
+                Authorization: `Bearer ${token}`,
+              },
+          data: formData,
+          params: {
+            _method: "PUT",
+          },
         });
-        set((prevState) => ({
+        set((prevState: any) => ({
           dtSurat: {
             last_page: prevState.dtSurat.last_page,
             current_page: prevState.dtSurat.current_page,

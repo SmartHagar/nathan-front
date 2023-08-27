@@ -55,7 +55,7 @@ const InputDate: FC<Props> = ({
             showMonthDropdown
             showYearDropdown
             dropdownMode="select"
-            className="w-[100%] border rounded-lg py-2 px-4"
+            className="w-full border rounded-lg py-2 px-4"
           />
         )}
       />

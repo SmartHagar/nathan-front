@@ -6,7 +6,7 @@ import ShowData from "./ShowData";
 import ButtonPrimary from "@/components/button/ButtonPrimary";
 import Form from "./form/Form";
 import ModalDelete from "@/components/modal/ModalDelete";
-import useJenis from "@/stores/crud/tataUsaha/Jenis";
+import useSurat from "@/stores/crud/tataUsaha/Surat";
 import { Toaster } from "react-hot-toast";
 import toastShow from "@/utils/toast-show";
 import InputTextSearch from "@/components/input/InputTextSerch";
@@ -17,9 +17,9 @@ type Delete = {
   isDelete: boolean;
 };
 
-const Jenis = () => {
+const Surat = ({ params }: { params: { tipe: string } }) => {
   // store
-  const { removeData } = useJenis();
+  const { removeData } = useSurat();
   // state
   const [showModal, setShowModal] = useState(false);
   const [showDelete, setShowDelete] = useState<boolean>(false);
@@ -56,6 +56,7 @@ const Jenis = () => {
           dtEdit={dtEdit}
           showModal={showModal}
           setShowModal={setShowModal}
+          tipe={params.tipe}
         />
         <ModalDelete
           showDel={showDelete}
@@ -63,20 +64,27 @@ const Jenis = () => {
           setDelete={setDelete}
         />
         <div className="mb-4 flex justify-between">
-          <p>Silahkan Mengolah data Jenis TataUsaha</p>
+          <p className="capitalize">
+            Silahkan Mengolah data Surat {params.tipe}
+          </p>
           <div>
-            <ButtonPrimary text="Tambah Jenis" onClick={handleTambah} />
+            <ButtonPrimary text="Tambah Surat" onClick={handleTambah} />
           </div>
         </div>
         <InputTextSearch
-          placeholder="Cari Jenis"
+          placeholder="Cari Surat"
           onChange={(e) => setSearch(e)}
         />
       </div>
 
-      <ShowData setDelete={setDelete} setEdit={setEdit} search={search} />
+      <ShowData
+        setDelete={setDelete}
+        setEdit={setEdit}
+        search={search}
+        tipe={params.tipe}
+      />
     </div>
   );
 };
 
-export default Jenis;
+export default Surat;

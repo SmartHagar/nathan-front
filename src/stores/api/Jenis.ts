@@ -12,29 +12,29 @@ type Props = {
 };
 
 type Store = {
-  dtProvinsi: any;
-  setProvinsi: ({ page = 1, limit = 10, search }: Props) => Promise<{
+  dtJenis: any;
+  setJenis: ({ page = 1, limit = 10, search }: Props) => Promise<{
     status: string;
     data?: {};
     error?: {};
   }>;
 };
 
-const useProvinsiApi = create(
+const useJenisApi = create(
   devtools<Store>((set, get) => ({
-    dtProvinsi: [],
-    setProvinsi: async ({ page = 1, limit = 10, search }) => {
+    dtJenis: [],
+    setJenis: async ({ page = 1, limit = 10, search }) => {
       try {
         const response = await api({
           method: "get",
-          url: `/provinsi`,
+          url: `/surat/jenis/all`,
           params: {
             limit,
             page,
             search,
           },
         });
-        set((state) => ({ ...state, dtProvinsi: response.data }));
+        set((state) => ({ ...state, dtJenis: response.data }));
         return {
           status: "berhasil",
           data: response.data,
@@ -49,4 +49,4 @@ const useProvinsiApi = create(
   }))
 );
 
-export default useProvinsiApi;
+export default useJenisApi;

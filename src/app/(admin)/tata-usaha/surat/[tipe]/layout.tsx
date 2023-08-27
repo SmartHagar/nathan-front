@@ -4,7 +4,7 @@ import React from "react";
 
 import type { Metadata } from "next";
 export const metadata: Metadata = {
-  title: "Daftar Jenis Surat",
+  title: "Daftar Surat",
 };
 
 type Props = {

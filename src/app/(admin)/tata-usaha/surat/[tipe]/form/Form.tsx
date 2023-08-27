@@ -4,25 +4,34 @@ import ButtonPrimary from "@/components/button/ButtonPrimary";
 import InputTextDefault from "@/components/input/InputTextDefault";
 import ModalDefault from "@/components/modal/ModalDefault";
 import toastShow from "@/utils/toast-show";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import BodyForm from "./BodyForm";
-import useJenis from "@/stores/crud/tataUsaha/Jenis";
+import useSurat from "@/stores/crud/tataUsaha/Surat";
 
 type Props = {
   showModal: boolean;
   setShowModal: (data: boolean) => void;
   dtEdit: any;
+  tipe: string;
 };
 
 type Inputs = {
   id: number | string;
-  nama: string;
+  no_surat: number | string;
+  jenis_id: number | string;
+  tipe: string;
+  tgl_surat: Date | string;
+  hal: string;
+  dari_ke: string;
+  gambar: string;
 };
 
-const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
+const Form = ({ showModal, setShowModal, dtEdit, tipe }: Props) => {
+  // state
+  const [tglSurat, setTglSurat] = useState<string | Date>("");
   // store
-  const { addData, updateData } = useJenis();
+  const { addData, updateData } = useSurat();
   // hook form
   const {
     register,
@@ -36,14 +45,28 @@ const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
   // reset form
   const resetForm = () => {
     setValue("id", "");
-    setValue("nama", "");
+    setValue("jenis_id", "");
+    setValue("no_surat", "");
+    setValue("tipe", tipe);
+    setTglSurat("");
+    setValue("tgl_surat", "");
+    setValue("hal", "");
+    setValue("dari_ke", "");
+    setValue("gambar", "");
   };
 
   // data edit
   useEffect(() => {
     if (dtEdit) {
       setValue("id", dtEdit.id);
-      setValue("nama", dtEdit.nama);
+      setValue("no_surat", dtEdit.no_surat);
+      setValue("jenis_id", dtEdit.jenis_id);
+      setValue("tipe", dtEdit.tipe);
+      setValue("tgl_surat", dtEdit.tgl_surat);
+      setTglSurat(new Date(dtEdit.tgl_surat));
+      setValue("hal", dtEdit.hal);
+      setValue("dari_ke", dtEdit.dari_ke);
+      setValue("gambar", dtEdit.gambar);
     } else {
       resetForm();
     }
@@ -71,7 +94,7 @@ const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
 
   return (
     <ModalDefault
-      title="Form Kabupaten"
+      title="Form Surat"
       showModal={showModal}
       setShowModal={setShowModal}
     >
@@ -87,6 +110,8 @@ const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
             watch={watch}
             setValue={setValue}
             showModal={showModal}
+            tglSurat={tglSurat}
+            setTglSurat={setTglSurat}
           />
         </div>
         <div>

@@ -28,7 +28,7 @@ const getProperty = (obj: any, prop: any) => {
       return moment(obj).format("DD/MM/YYYY");
     }
 
-    if (prop === "image" || prop === "foto") {
+    if (prop === "gambar" || prop === "foto") {
       return (
         obj && (
           <Image src={`${BASE_URL}/${obj}`} width={100} height={100} alt="" />
