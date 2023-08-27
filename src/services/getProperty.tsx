@@ -41,7 +41,7 @@ const getProperty = (obj: any, prop: any) => {
         )
       );
     }
-    return obj;
+    return <p className="capitalize">{obj}</p>;
   } else {
     // eslint-disable-next-line no-throw-literal
     throw "parts is not valid array";

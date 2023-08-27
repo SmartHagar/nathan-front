@@ -7,7 +7,7 @@ import toastShow from "@/utils/toast-show";
 import { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import BodyForm from "./BodyForm";
-import usePangkat from "@/stores/crud/personalia/Pangkat";
+import useJabatan from "@/stores/crud/personalia/Jabatan";
 
 type Props = {
   showModal: boolean;
@@ -17,14 +17,13 @@ type Props = {
 
 type Inputs = {
   id: number | string;
-  gol: string;
-  pangkat: string;
-  ruang: string;
+  jenis: string;
+  nama: string;
 };
 
 const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
   // store
-  const { addData, updateData } = usePangkat();
+  const { addData, updateData } = useJabatan();
   // hook form
   const {
     register,
@@ -38,18 +37,16 @@ const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
   // reset form
   const resetForm = () => {
     setValue("id", "");
-    setValue("gol", "");
-    setValue("pangkat", "");
-    setValue("ruang", "");
+    setValue("jenis", "");
+    setValue("nama", "");
   };
 
   // data edit
   useEffect(() => {
     if (dtEdit) {
       setValue("id", dtEdit.id);
-      setValue("gol", dtEdit.gol);
-      setValue("pangkat", dtEdit.pangkat);
-      setValue("ruang", dtEdit.ruang);
+      setValue("jenis", dtEdit.jenis);
+      setValue("nama", dtEdit.nama);
     } else {
       resetForm();
     }
@@ -77,7 +74,7 @@ const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
 
   return (
     <ModalDefault
-      title="Form Pangkat"
+      title="Form Jabatan"
       showModal={showModal}
       setShowModal={setShowModal}
     >
