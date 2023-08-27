@@ -26,7 +26,7 @@ const menus = [
       },
       {
         name: "Dokumen Lainnya",
-        href: "/tata-usaha/dokumenLainnya",
+        href: "/tata-usaha/dokumen",
       },
     ],
   },

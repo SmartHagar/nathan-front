@@ -21,9 +21,6 @@ const getProperty = (obj: any, prop: any) => {
       return obj ? obj[last] : "";
     }
 
-    if (prop === "prodi_id") {
-    }
-
     if (prop === "tgl_mulai" || prop === "tgl_selesai") {
       return moment(obj).format("DD/MM/YYYY");
     }
@@ -35,15 +32,11 @@ const getProperty = (obj: any, prop: any) => {
         )
       );
     }
-    if (prop === "link") {
+    if (prop === "file") {
       return (
         obj && (
-          <a
-            href={`/stackholder/${obj}`}
-            target="_blank"
-            className="hover:underline"
-          >
-            Buka Link
+          <a href={`${BASE_URL}/${obj}`} target="_blank">
+            Lihat File
           </a>
         )
       );

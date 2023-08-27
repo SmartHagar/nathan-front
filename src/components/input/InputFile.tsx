@@ -42,7 +42,6 @@ const InputFile: FC<Props> = ({
     setTypeFile(splitType[0]);
     setValue(name, file);
   };
-  console.log({ fileEdit });
   return (
     <div className={addClass}>
       <label className="text-sm font-medium text-gray-700 tracking-wide">
@@ -79,7 +78,7 @@ const InputFile: FC<Props> = ({
           />
         )}
         {/* jika fileEdit ada */}
-        {fileEdit && (
+        {fileEdit && name !== "file" && (
           <div>
             <Image
               src={`${BASE_URL}/${fileEdit}`}
