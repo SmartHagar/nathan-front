@@ -9,6 +9,10 @@ const getProperty = (obj: any, prop: any) => {
   let parts = prop.split(".");
   if (Array.isArray(parts)) {
     let last = parts.length > 1 ? parts.pop() : parts;
+    // jika gabungan antara pangkat golongan dan ruang
+    if (last.includes("pangkat_gol_ru")) {
+      return `${obj["pangkat"]["gol"]} ${obj["pangkat"]["ruang"]}`;
+    }
     let l = parts.length,
       i = 1,
       current = parts[0];
@@ -16,15 +20,12 @@ const getProperty = (obj: any, prop: any) => {
       current = parts[i];
       i++;
     }
-
     if (typeof obj === "object") {
       return obj ? obj[last] : "";
     }
-
     if (prop === "tgl_mulai" || prop === "tgl_selesai") {
       return moment(obj).format("DD/MM/YYYY");
     }
-
     if (prop === "gambar" || prop === "foto") {
       return (
         obj && (

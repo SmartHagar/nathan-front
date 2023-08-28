@@ -69,7 +69,7 @@ const TablesDefault = (props: Props) => {
                 {/* loop td */}
                 {props.tableBodies.map((column, index) => {
                   return (
-                    <td key={index} className={`px-6 py-4 }`}>
+                    <td key={index} className={`px-6 py-4 whitespace-nowrap`}>
                       {getProperty(row, column)}
                     </td>
                   );

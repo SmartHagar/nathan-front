@@ -47,20 +47,20 @@ const menus = [
     icon: <BsLampFill />,
     subMenus: [
       {
-        name: "Jenis",
-        href: "/personalia/jenis",
+        name: "Dosen",
+        href: "/personalia/pegawai/dosen",
       },
       {
-        name: "Surat Masuk",
-        href: "/personalia/surat/masuk",
+        name: "Tendik",
+        href: "/personalia/pegawai/tendik",
       },
       {
-        name: "Surat Keluar",
-        href: "/personalia/surat/keluar",
+        name: "Pekarya",
+        href: "/personalia/pegawai/pekarya",
       },
       {
-        name: "Dokumen Lainnya",
-        href: "/personalia/dokumen",
+        name: "Satkam",
+        href: "/personalia/pegawai/satkam",
       },
     ],
   },
