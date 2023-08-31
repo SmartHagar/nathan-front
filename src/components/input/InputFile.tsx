@@ -15,6 +15,8 @@ type Props = {
   addClass?: string;
   setValue: any;
   fileEdit?: any;
+  myFile: any;
+  setMyFile: any;
 };
 
 const InputFile: FC<Props> = ({
@@ -27,8 +29,9 @@ const InputFile: FC<Props> = ({
   accept,
   setValue,
   fileEdit,
+  myFile,
+  setMyFile,
 }) => {
-  const [myFile, setMyFile] = useState<any>();
   const [typeFile, setTypeFile] = useState<string>();
   const onSelectFile = (file: any) => {
     if (file) {

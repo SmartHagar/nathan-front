@@ -1,12 +1,12 @@
 /** @format */
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import ShowData from "./ShowData";
 import ButtonPrimary from "@/components/button/ButtonPrimary";
 import Form from "./form/Form";
 import ModalDelete from "@/components/modal/ModalDelete";
-import useSurat from "@/stores/crud/tataUsaha/Surat";
+import usePegawai from "@/stores/crud/personalia/Pegawai";
 import { Toaster } from "react-hot-toast";
 import toastShow from "@/utils/toast-show";
 import InputTextSearch from "@/components/input/InputTextSerch";
@@ -17,9 +17,9 @@ type Delete = {
   isDelete: boolean;
 };
 
-const Surat = ({ params }: { params: { tipe: string } }) => {
+const Pegawai = ({ params }: { params: { tipe: string } }) => {
   // store
-  const { removeData } = useSurat();
+  const { removeData } = usePegawai();
   // state
   const [showModal, setShowModal] = useState(false);
   const [showDelete, setShowDelete] = useState<boolean>(false);
@@ -84,7 +84,7 @@ const Surat = ({ params }: { params: { tipe: string } }) => {
           </div>
         </div>
         <InputTextSearch
-          placeholder="Cari Surat"
+          placeholder="Cari Pegawai"
           onChange={(e) => setSearch(e)}
         />
       </div>
@@ -99,4 +99,4 @@ const Surat = ({ params }: { params: { tipe: string } }) => {
   );
 };
 
-export default Surat;
+export default Pegawai;

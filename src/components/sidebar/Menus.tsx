@@ -1,6 +1,14 @@
 /** @format */
+interface Menu {
+  name: string;
+  href: string;
+  icon?: JSX.Element;
+  slug?: string;
+  subMenus?: Menu[];
+}
+
 import { BsHouseDoorFill, BsLampFill, BsPeopleFill } from "react-icons/bs";
-const menus = [
+const menus: Menu[] = [
   {
     name: "Home",
     href: "/",
@@ -47,20 +55,34 @@ const menus = [
     icon: <BsLampFill />,
     subMenus: [
       {
-        name: "Dosen",
-        href: "/personalia/pegawai/dosen",
-      },
-      {
-        name: "Tendik",
-        href: "/personalia/pegawai/tendik",
-      },
-      {
-        name: "Pekarya",
-        href: "/personalia/pegawai/pekarya",
-      },
-      {
-        name: "Satkam",
-        href: "/personalia/pegawai/satkam",
+        name: "Pegawai",
+        href: "#",
+        slug: "pegawai",
+        subMenus: [
+          {
+            name: "Dosen",
+            href: "/personalia/pegawai/dosen",
+          },
+          {
+            name: "Tendik",
+            href: "/personalia/pegawai/tendik",
+          },
+          {
+            name: "Mahasiswa",
+            href: "#",
+            slug: "mahasiswa",
+            subMenus: [
+              {
+                name: "Pindahan",
+                href: "/personalia/pegawai/mahasiswa/pindahan",
+              },
+              {
+                name: "Gabungan",
+                href: "/personalia/pegawai/mahasiswa/gabungan",
+              },
+            ],
+          },
+        ],
       },
     ],
   },
@@ -83,3 +105,4 @@ const stackholderMenus = [
 
 export default menus;
 export { stackholderMenus };
+export type { Menu };

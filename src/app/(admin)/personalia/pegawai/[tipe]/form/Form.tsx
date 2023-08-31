@@ -39,6 +39,7 @@ const Form = ({ showModal, setShowModal, dtEdit, tipe }: Props) => {
   const [tgl_lahir, setTgl_lahir] = useState<string | Date>(
     new Date("01-01-1980")
   );
+  const [myFile, setMyFile] = useState<any>();
   // store
   const { addData, updateData } = usePegawai();
   // hook form
@@ -69,6 +70,7 @@ const Form = ({ showModal, setShowModal, dtEdit, tipe }: Props) => {
     setValue("alamat", "");
     setValue("thn_terima", "");
     setValue("foto", "");
+    setMyFile(null);
   };
 
   // data edit
@@ -136,6 +138,8 @@ const Form = ({ showModal, setShowModal, dtEdit, tipe }: Props) => {
             tgl_lahir={tgl_lahir}
             setTgl_lahir={setTgl_lahir}
             tipe={tipe}
+            myFile={myFile}
+            setMyFile={setMyFile}
           />
         </div>
         <div>

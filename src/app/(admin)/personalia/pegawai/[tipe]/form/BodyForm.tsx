@@ -22,6 +22,8 @@ type Props = {
   tgl_lahir: Date | string;
   setTgl_lahir: any;
   tipe: string;
+  myFile: any;
+  setMyFile: any;
 };
 
 const BodyForm: FC<Props> = ({
@@ -35,6 +37,8 @@ const BodyForm: FC<Props> = ({
   tgl_lahir,
   setTgl_lahir,
   tipe,
+  myFile,
+  setMyFile,
 }) => {
   const { setPangkat, dtPangkat } = usePangkatApi();
   // memanggil data pangkat
@@ -198,6 +202,8 @@ const BodyForm: FC<Props> = ({
         addClass="col-span-4"
         setValue={setValue}
         fileEdit={dtEdit?.foto}
+        myFile={myFile}
+        setMyFile={setMyFile}
       />
     </>
   );
