@@ -67,20 +67,24 @@ const menus: Menu[] = [
             name: "Tendik",
             href: "/personalia/pegawai/tendik",
           },
+        ],
+      },
+      {
+        name: "Riwayat",
+        href: "#",
+        slug: "riwayat",
+        subMenus: [
           {
-            name: "Mahasiswa",
-            href: "#",
-            slug: "mahasiswa",
-            subMenus: [
-              {
-                name: "Pindahan",
-                href: "/personalia/pegawai/mahasiswa/pindahan",
-              },
-              {
-                name: "Gabungan",
-                href: "/personalia/pegawai/mahasiswa/gabungan",
-              },
-            ],
+            name: "Jabatan",
+            href: "/personalia/riwayat/jabatan",
+          },
+          {
+            name: "Pendidikan",
+            href: "/personalia/riwayat/pendidikan",
+          },
+          {
+            name: "Pekerjaan",
+            href: "/personalia/riwayat/pekerjaan",
           },
         ],
       },

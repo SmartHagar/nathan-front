@@ -25,8 +25,7 @@ const renderMenus = ({
   openMenus: any;
 }) => {
   const isMenuOpen = openMenus.includes(slug);
-  // console.log({ isMenuOpen });
-
+  console.log({ openMenus });
   return (
     <div key={index}>
       <details
@@ -110,7 +109,6 @@ const AdminSide = () => {
       }
       // console.log({ menu });
       if (menu.subMenus) {
-        // console.log({ menu });
         findOpenMenus(menu.subMenus);
       }
     }

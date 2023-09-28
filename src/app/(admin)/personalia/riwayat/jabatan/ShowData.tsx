@@ -3,10 +3,8 @@
 import LoadingSpiner from "@/components/loading/LoadingSpiner";
 import PaginationDefault from "@/components/pagination/PaginationDefault";
 import TablesDefault from "@/components/tables/TablesDefault";
-import usePegawai from "@/stores/crud/personalia/Pegawai";
+import useRiwayatJabatan from "@/stores/crud/personalia/RiwayatJabatan";
 import React, { FC, useEffect, useState } from "react";
-import ShowUser from "./ShowUser";
-import { BsInfoCircle } from "react-icons/bs";
 
 type DeleteProps = {
   id?: number | string;
@@ -17,29 +15,27 @@ type Props = {
   setDelete: ({ id, isDelete }: DeleteProps) => void;
   setEdit: (row: any) => void;
   search: string;
-  tipe: string;
 };
 
-const ShowData: FC<Props> = ({ setDelete, setEdit, search, tipe }) => {
-  const { setPegawai, dtPegawai } = usePegawai();
+const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
+  const { setRiwayatJabatan, dtRiwayatJabatan } = useRiwayatJabatan();
   // state
   const [page, setPage] = useState<number>(1);
   const [limit, setLimit] = useState<number>(10);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [showModal, setShowModal] = useState<boolean>(false);
-  const [rowData, setRowData] = useState<any>();
+  const [jenis, setJenis] = useState<string>("");
 
-  const fetchDataPegawai = async () => {
-    const res = await setPegawai({
+  const fetchDataRiwayatJabatan = async () => {
+    const res = await setRiwayatJabatan({
       page,
       limit,
       search,
-      tipe,
+      jenis,
     });
     setIsLoading(false);
   };
   useEffect(() => {
-    fetchDataPegawai();
+    fetchDataRiwayatJabatan();
 
     return () => {};
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -47,41 +43,16 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search, tipe }) => {
   // ketika search berubah
   useEffect(() => {
     setPage(1);
-    fetchDataPegawai();
+    fetchDataRiwayatJabatan();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [search, tipe]);
+  }, [search]);
 
   // table
-  const headTable = [
-    "No",
-    "NIK",
-    "Nama",
-    "Golongan",
-    "Thn. Terima",
-    "Foto",
-    "Aksi",
-  ];
-  // push NIDN to headTable index 2
-  const tableBodies = ["NIK", "nama", "pangkat_gol_ru", "thn_terima", "foto"];
-  tipe === "dosen" &&
-    (headTable.splice(2, 0, "NIDN"), tableBodies.splice(1, 0, "NIDN"));
+  const headTable = ["No", "Nama", "Jabatan", "Mulai", "Selesai", "Aksi"];
+  const tableBodies = ["pegawai.nama", "jabatan.nama", "mulai", "seles"];
 
-  const costume = (row: any) => {
-    return (
-      <BsInfoCircle
-        size={20}
-        className="cursor-pointer hover:text-link"
-        onClick={() => (setRowData(row), setShowModal(true))}
-      />
-    );
-  };
   return (
     <div className="flex-1 flex-col max-w-full h-full overflow-auto">
-      <ShowUser
-        showModal={showModal}
-        setShowModal={setShowModal}
-        rowData={rowData}
-      />
       {isLoading ? (
         <LoadingSpiner />
       ) : (
@@ -90,21 +61,20 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search, tipe }) => {
             <TablesDefault
               headTable={headTable}
               tableBodies={tableBodies}
-              dataTable={dtPegawai.data}
+              dataTable={dtRiwayatJabatan.data}
               page={page}
               limit={limit}
               setEdit={setEdit}
               setDelete={setDelete}
               ubah={true}
               hapus={true}
-              costume={costume}
             />
           </div>
-          {dtPegawai?.last_page > 1 && (
+          {dtRiwayatJabatan?.last_page > 1 && (
             <div className="mt-4">
               <PaginationDefault
-                currentPage={dtPegawai?.current_page}
-                totalPages={dtPegawai?.last_page}
+                currentPage={dtRiwayatJabatan?.current_page}
+                totalPages={dtRiwayatJabatan?.last_page}
                 setPage={setPage}
               />
             </div>
