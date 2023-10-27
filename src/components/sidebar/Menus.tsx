@@ -11,7 +11,7 @@ import { BsHouseDoorFill, BsLampFill, BsPeopleFill } from "react-icons/bs";
 const menus: Menu[] = [
   {
     name: "Home",
-    href: "/",
+    href: "/admin",
     icon: <BsHouseDoorFill />,
   },
   {
@@ -22,30 +22,30 @@ const menus: Menu[] = [
     subMenus: [
       {
         name: "Jenis",
-        href: "/tata-usaha/jenis",
+        href: "/admin/tata-usaha/jenis",
       },
       {
         name: "Surat Masuk",
-        href: "/tata-usaha/surat/masuk",
+        href: "/admin/tata-usaha/surat/masuk",
       },
       {
         name: "Surat Keluar",
-        href: "/tata-usaha/surat/keluar",
+        href: "/admin/tata-usaha/surat/keluar",
       },
       {
         name: "Dokumen Lainnya",
-        href: "/tata-usaha/dokumen",
+        href: "/admin/tata-usaha/dokumen",
       },
     ],
   },
   {
     name: "Pangkat",
-    href: "/pangkat",
+    href: "/admin/pangkat",
     icon: <BsHouseDoorFill />,
   },
   {
     name: "Jabatan",
-    href: "/jabatan",
+    href: "/admin/jabatan",
     icon: <BsHouseDoorFill />,
   },
   {
@@ -61,11 +61,11 @@ const menus: Menu[] = [
         subMenus: [
           {
             name: "Dosen",
-            href: "/personalia/pegawai/dosen",
+            href: "/admin/personalia/pegawai/dosen",
           },
           {
             name: "Tendik",
-            href: "/personalia/pegawai/tendik",
+            href: "/admin/personalia/pegawai/tendik",
           },
         ],
       },
@@ -76,15 +76,15 @@ const menus: Menu[] = [
         subMenus: [
           {
             name: "Jabatan",
-            href: "/personalia/riwayat/jabatan",
+            href: "/admin/personalia/riwayat/jabatan",
           },
           {
             name: "Pendidikan",
-            href: "/personalia/riwayat/pendidikan",
+            href: "/admin/personalia/riwayat/pendidikan",
           },
           {
             name: "Pekerjaan",
-            href: "/personalia/riwayat/pekerjaan",
+            href: "/admin/personalia/riwayat/pekerjaan",
           },
         ],
       },

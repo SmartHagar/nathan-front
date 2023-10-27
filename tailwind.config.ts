@@ -17,6 +17,9 @@ const config: Config = {
         upload: "#EFEA5A",
         link: "#007f5f",
       },
+      backgroundImage: {
+        login: "url('/images/bg/login.jpg')",
+      },
     },
   },
   plugins: [require("tailwind-scrollbar")({ nocompatible: true })],
