@@ -82,7 +82,7 @@ const useRiwayatPekerjaan = create(
         });
         set((state) => ({
           ...state,
-          showRiwayatPekerjaan: response.data.data,
+          dtRiwayatPekerjaan: response.data.data,
         }));
         return {
           status: "berhasil",

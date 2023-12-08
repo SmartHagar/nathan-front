@@ -8,8 +8,7 @@ type Props = {};
 
 const Dashboard = (props: Props) => {
   const { showPegawai } = useContext(PegawaiContext);
-  console.log({ showPegawai });
-  return <div>Selamat datang</div>;
+  return <div>Selamat datang {showPegawai?.nama}</div>;
 };
 
 export default Dashboard;

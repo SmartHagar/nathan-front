@@ -78,7 +78,7 @@ const useRiwayatJabatan = create(
           url: `/personalia/riwayat_jabatan/${id}`,
           headers: { Authorization: `Bearer ${token}` },
         });
-        set((state) => ({ ...state, showRiwayatJabatan: response.data.data }));
+        set((state) => ({ ...state, dtRiwayatJabatan: response.data.data }));
         return {
           status: "berhasil",
           data: response.data,
@@ -115,7 +115,7 @@ const useRiwayatJabatan = create(
       } catch (error: any) {
         return {
           status: "error",
-          data: error.response.data,
+          data: error.response?.data,
         };
       }
     },
@@ -143,7 +143,7 @@ const useRiwayatJabatan = create(
       } catch (error: any) {
         return {
           status: "error",
-          data: error.response.data,
+          data: error.response?.data,
         };
       }
     },
@@ -174,7 +174,7 @@ const useRiwayatJabatan = create(
         }));
         return {
           status: "berhasil update",
-          data: response.data,
+          data: response?.data,
         };
       } catch (error: any) {
         return {

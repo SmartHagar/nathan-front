@@ -4,6 +4,8 @@ import React from "react";
 import { BASE_URL } from "./baseURL";
 import Image from "next/image";
 import moment from "moment";
+import "moment/locale/id";
+moment.locale("id");
 
 const getProperty = (obj: any, prop: any) => {
   let parts = prop.split(".");
@@ -23,8 +25,13 @@ const getProperty = (obj: any, prop: any) => {
     if (typeof obj === "object") {
       return obj ? obj[last] : "";
     }
-    if (prop === "tgl_mulai" || prop === "tgl_selesai") {
-      return moment(obj).format("DD/MM/YYYY");
+    if (
+      prop === "tgl_mulai" ||
+      prop === "tgl_selesai" ||
+      prop === "mulai" ||
+      prop === "seles"
+    ) {
+      return moment(obj).format("DD/MMM/YYYY");
     }
     if (prop === "gambar" || prop === "foto") {
       // mengambil extension dari obj

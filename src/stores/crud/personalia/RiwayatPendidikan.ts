@@ -82,7 +82,7 @@ const useRiwayatPendidikan = create(
         });
         set((state) => ({
           ...state,
-          showRiwayatPendidikan: response.data.data,
+          dtRiwayatPendidikan: response.data.data,
         }));
         return {
           status: "berhasil",

@@ -61,19 +61,6 @@ const BodyForm: FC<Props> = ({
   }, [showModal]);
   return (
     <>
-      {dtPegawai?.data && (
-        <SelectFromDb
-          label="Pegawai"
-          placeholder="Pilih Pegawai"
-          name="pegawai_id"
-          dataDb={dtPegawai?.data}
-          body={["id", "NIK", "nama"]}
-          control={control}
-          required
-          errors={errors.pegawai_id}
-          addClass="col-span-4"
-        />
-      )}
       {dtJabatan?.data && (
         <SelectFromDb
           label="Jabatan"

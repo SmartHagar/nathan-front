@@ -4,10 +4,11 @@ import ButtonPrimary from "@/components/button/ButtonPrimary";
 import InputTextDefault from "@/components/input/InputTextDefault";
 import ModalDefault from "@/components/modal/ModalDefault";
 import toastShow from "@/utils/toast-show";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import BodyForm from "./BodyForm";
 import useRiwayatPendidikan from "@/stores/crud/personalia/RiwayatPendidikan";
+import { PegawaiContext } from "@/context/pegawaiContext";
 
 type Props = {
   showModal: boolean;
@@ -17,7 +18,7 @@ type Props = {
 
 type Inputs = {
   id: number | string;
-  pegawai_id: number | string;
+  pegawai_id?: number | string;
   jenjang: string;
   instansi: string;
   mulai: Date | string;
@@ -25,6 +26,8 @@ type Inputs = {
 };
 
 const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
+  // context pegawai
+  const { showPegawai } = useContext(PegawaiContext);
   // state
   const [mulai, setMulai] = useState<string | Date>("");
   const [seles, setSeles] = useState<string | Date>("");
@@ -43,7 +46,6 @@ const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
   // reset form
   const resetForm = () => {
     setValue("id", "");
-    setValue("pegawai_id", "");
     setValue("jenjang", "");
     setValue("instansi", "");
     setMulai("");
@@ -56,7 +58,6 @@ const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
   useEffect(() => {
     if (dtEdit) {
       setValue("id", dtEdit.id);
-      setValue("pegawai_id", dtEdit.pegawai_id);
       setValue("jenjang", dtEdit.jenjang);
       setValue("instansi", dtEdit.instansi);
       setValue("mulai", dtEdit.mulai);
@@ -70,6 +71,7 @@ const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
   }, [showModal, dtEdit]);
   // simpan data
   const onSubmit: SubmitHandler<Inputs> = async (row) => {
+    row.pegawai_id = showPegawai?.id;
     console.log({ row });
     // jika dtEdit tidak kosong maka update
     if (dtEdit) {
@@ -90,7 +92,7 @@ const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
 
   return (
     <ModalDefault
-      title="Form RiwayatPendidikan"
+      title="Form Riwayat Pendidikan"
       showModal={showModal}
       setShowModal={setShowModal}
     >

@@ -3,8 +3,9 @@
 import LoadingSpiner from "@/components/loading/LoadingSpiner";
 import PaginationDefault from "@/components/pagination/PaginationDefault";
 import TablesDefault from "@/components/tables/TablesDefault";
+import { PegawaiContext } from "@/context/pegawaiContext";
 import useRiwayatJabatan from "@/stores/crud/personalia/RiwayatJabatan";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useContext, useEffect, useState } from "react";
 
 type DeleteProps = {
   id?: number | string;
@@ -18,20 +19,16 @@ type Props = {
 };
 
 const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
-  const { setRiwayatJabatan, dtRiwayatJabatan } = useRiwayatJabatan();
+  // context pegawai
+  const { showPegawai } = useContext(PegawaiContext);
+  const { setShowRiwayatJabatan, dtRiwayatJabatan } = useRiwayatJabatan();
   // state
   const [page, setPage] = useState<number>(1);
   const [limit, setLimit] = useState<number>(10);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [jenis, setJenis] = useState<string>("");
 
   const fetchDataRiwayatJabatan = async () => {
-    const res = await setRiwayatJabatan({
-      page,
-      limit,
-      search,
-      jenis,
-    });
+    await setShowRiwayatJabatan(showPegawai?.id as number);
     setIsLoading(false);
   };
   useEffect(() => {
@@ -39,7 +36,7 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
 
     return () => {};
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page, limit]);
+  }, [page, limit, showPegawai?.id]);
   // ketika search berubah
   useEffect(() => {
     setPage(1);

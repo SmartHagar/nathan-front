@@ -25,7 +25,6 @@ const renderMenus = ({
   openMenus: any;
 }) => {
   const isMenuOpen = openMenus.includes(slug);
-  console.log({ openMenus });
   return (
     <div key={index}>
       <details

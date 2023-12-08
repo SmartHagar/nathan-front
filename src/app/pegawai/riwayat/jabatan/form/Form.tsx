@@ -4,10 +4,11 @@ import ButtonPrimary from "@/components/button/ButtonPrimary";
 import InputTextDefault from "@/components/input/InputTextDefault";
 import ModalDefault from "@/components/modal/ModalDefault";
 import toastShow from "@/utils/toast-show";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import BodyForm from "./BodyForm";
 import useRiwayatJabatan from "@/stores/crud/personalia/RiwayatJabatan";
+import { PegawaiContext } from "@/context/pegawaiContext";
 
 type Props = {
   showModal: boolean;
@@ -17,13 +18,15 @@ type Props = {
 
 type Inputs = {
   id: number | string;
-  pegawai_id: number | string;
+  pegawai_id?: number | string;
   jabatan_id: number | string;
   mulai: Date | string;
   seles: Date | string;
 };
 
 const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
+  // context pegawai
+  const { showPegawai } = useContext(PegawaiContext);
   // state
   const [mulai, setMulai] = useState<string | Date>("");
   const [seles, setSeles] = useState<string | Date>("");
@@ -42,7 +45,6 @@ const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
   // reset form
   const resetForm = () => {
     setValue("id", "");
-    setValue("pegawai_id", "");
     setValue("jabatan_id", "");
     setMulai("");
     setValue("mulai", "");
@@ -54,7 +56,6 @@ const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
   useEffect(() => {
     if (dtEdit) {
       setValue("id", dtEdit.id);
-      setValue("pegawai_id", dtEdit.pegawai_id);
       setValue("jabatan_id", dtEdit.jabatan_id);
       setValue("mulai", dtEdit.mulai);
       setMulai(new Date(dtEdit.mulai));
@@ -67,6 +68,7 @@ const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
   }, [showModal, dtEdit]);
   // simpan data
   const onSubmit: SubmitHandler<Inputs> = async (row) => {
+    row.pegawai_id = showPegawai?.id;
     console.log({ row });
     // jika dtEdit tidak kosong maka update
     if (dtEdit) {

@@ -3,8 +3,9 @@
 import LoadingSpiner from "@/components/loading/LoadingSpiner";
 import PaginationDefault from "@/components/pagination/PaginationDefault";
 import TablesDefault from "@/components/tables/TablesDefault";
+import { PegawaiContext } from "@/context/pegawaiContext";
 import useRiwayatPendidikan from "@/stores/crud/personalia/RiwayatPendidikan";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useContext, useEffect, useState } from "react";
 
 type DeleteProps = {
   id?: number | string;
@@ -18,20 +19,17 @@ type Props = {
 };
 
 const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
-  const { setRiwayatPendidikan, dtRiwayatPendidikan } = useRiwayatPendidikan();
+  // context pegawai
+  const { showPegawai } = useContext(PegawaiContext);
+  const { setShowRiwayatPendidikan, dtRiwayatPendidikan } =
+    useRiwayatPendidikan();
   // state
   const [page, setPage] = useState<number>(1);
   const [limit, setLimit] = useState<number>(10);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [tipe, setTipe] = useState<string>("");
 
   const fetchDataRiwayatPendidikan = async () => {
-    const res = await setRiwayatPendidikan({
-      page,
-      limit,
-      search,
-      tipe,
-    });
+    const res = await setShowRiwayatPendidikan(showPegawai?.id as number);
     setIsLoading(false);
   };
   useEffect(() => {
@@ -39,7 +37,7 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
 
     return () => {};
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page, limit]);
+  }, [page, limit, showPegawai?.id]);
   // ketika search berubah
   useEffect(() => {
     setPage(1);
@@ -48,16 +46,8 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
   }, [search]);
 
   // table
-  const headTable = [
-    "No",
-    "Nama",
-    "Jenjang",
-    "Instansi",
-    "Masuk",
-    "Selesai",
-    "Aksi",
-  ];
-  const tableBodies = ["pegawai.nama", "jenjang", "instansi", "mulai", "seles"];
+  const headTable = ["No", "Jenjang", "Instansi", "Masuk", "Selesai", "Aksi"];
+  const tableBodies = ["jenjang", "instansi", "mulai", "seles"];
 
   return (
     <div className="flex-1 flex-col max-w-full h-full overflow-auto">

@@ -1,6 +1,6 @@
 /** @format */
 "use client";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import ShowData from "./ShowData";
 import ButtonPrimary from "@/components/button/ButtonPrimary";
@@ -10,6 +10,8 @@ import usePegawai from "@/stores/crud/personalia/Pegawai";
 import { Toaster } from "react-hot-toast";
 import toastShow from "@/utils/toast-show";
 import InputTextSearch from "@/components/input/InputTextSerch";
+import useRiwayatJabatan from "@/stores/crud/personalia/RiwayatJabatan";
+import { PegawaiContext } from "@/context/pegawaiContext";
 
 // type setDelete
 type Delete = {
@@ -18,8 +20,10 @@ type Delete = {
 };
 
 const Pegawai = () => {
+  // context pegawai
+  const { showPegawai } = useContext(PegawaiContext);
   // store
-  const { removeData } = usePegawai();
+  const { removeData } = useRiwayatJabatan();
   // state
   const [showModal, setShowModal] = useState(false);
   const [showDelete, setShowDelete] = useState<boolean>(false);

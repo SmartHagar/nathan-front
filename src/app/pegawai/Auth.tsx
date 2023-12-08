@@ -23,7 +23,7 @@ const Auth: FC<Props> = (props: Props) => {
       route.push("/");
     } else {
       const role = Cookies.get("role");
-      if (role !== "admin") {
+      if (role !== "pegawai") {
         route.push(`/${role}`);
       }
     }
@@ -38,7 +38,6 @@ const Auth: FC<Props> = (props: Props) => {
 
   const loadData = async () => {
     const cek = await getCek();
-    console.log({ cek });
     if (!cek?.error) {
       setIsLoading(false);
     }
@@ -48,6 +47,7 @@ const Auth: FC<Props> = (props: Props) => {
     loadData();
     console.log("pertama render");
     return () => {};
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (isLoading) {

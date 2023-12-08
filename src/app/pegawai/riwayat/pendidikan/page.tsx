@@ -6,10 +6,10 @@ import ShowData from "./ShowData";
 import ButtonPrimary from "@/components/button/ButtonPrimary";
 import Form from "./form/Form";
 import ModalDelete from "@/components/modal/ModalDelete";
-import usePegawai from "@/stores/crud/personalia/Pegawai";
 import { Toaster } from "react-hot-toast";
 import toastShow from "@/utils/toast-show";
 import InputTextSearch from "@/components/input/InputTextSerch";
+import useRiwayatPendidikan from "@/stores/crud/personalia/RiwayatPendidikan";
 
 // type setDelete
 type Delete = {
@@ -19,7 +19,7 @@ type Delete = {
 
 const Pegawai = () => {
   // store
-  const { removeData } = usePegawai();
+  const { removeData } = useRiwayatPendidikan();
   // state
   const [showModal, setShowModal] = useState(false);
   const [showDelete, setShowDelete] = useState<boolean>(false);
