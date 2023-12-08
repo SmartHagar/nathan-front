@@ -4,6 +4,7 @@
 import { BASE_URL } from "@/services/baseURL";
 import Image from "next/image";
 import React, { FC, useState } from "react";
+import Resizer from "react-image-file-resizer";
 
 type Props = {
   label?: string;
@@ -33,6 +34,31 @@ const InputFile: FC<Props> = ({
   setMyFile,
 }) => {
   const [typeFile, setTypeFile] = useState<string>();
+  const resizeFile = (file: any) =>
+    new Promise(() => {
+      if (file) {
+        const splitType = file?.type?.split("/") || [];
+        const type = splitType[0];
+        if (type !== "image") {
+          return onSelectFile(file);
+        }
+        console.log({ splitType });
+        Resizer.imageFileResizer(
+          file,
+          1500,
+          1500,
+          splitType[1],
+          80,
+          0,
+          (uri) => {
+            onSelectFile(uri);
+          },
+          "file"
+        );
+      } else {
+        onSelectFile(null);
+      }
+    });
   const onSelectFile = (file: any) => {
     if (file) {
       let reader = new FileReader();
@@ -58,7 +84,7 @@ const InputFile: FC<Props> = ({
         accept={accept}
         onChange={(event: any) => {
           const selectedFile = event.target?.files[0] || null;
-          onSelectFile(selectedFile);
+          resizeFile(selectedFile);
         }}
       />
       <input

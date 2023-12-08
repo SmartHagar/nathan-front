@@ -7,33 +7,29 @@ import toastShow from "@/utils/toast-show";
 import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import BodyForm from "./BodyForm";
-import useSurat from "@/stores/crud/tataUsaha/Surat";
+import useRiwayatPendidikan from "@/stores/crud/personalia/RiwayatPendidikan";
 
 type Props = {
   showModal: boolean;
   setShowModal: (data: boolean) => void;
   dtEdit: any;
-  tipe: string;
 };
 
 type Inputs = {
   id: number | string;
-  no_surat: number | string;
-  jenis_id: number | string;
-  tipe: string;
-  tgl_surat: Date | string;
-  hal: string;
-  status: string;
-  dari_ke: string;
-  gambar: string;
+  pegawai_id: number | string;
+  jenjang: string;
+  instansi: string;
+  mulai: Date | string;
+  seles: Date | string;
 };
 
-const Form = ({ showModal, setShowModal, dtEdit, tipe }: Props) => {
+const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
   // state
-  const [tglSurat, setTglSurat] = useState<string | Date>("");
-  const [myFile, setMyFile] = useState<any>();
+  const [mulai, setMulai] = useState<string | Date>("");
+  const [seles, setSeles] = useState<string | Date>("");
   // store
-  const { addData, updateData } = useSurat();
+  const { addData, updateData } = useRiwayatPendidikan();
   // hook form
   const {
     register,
@@ -47,29 +43,26 @@ const Form = ({ showModal, setShowModal, dtEdit, tipe }: Props) => {
   // reset form
   const resetForm = () => {
     setValue("id", "");
-    setValue("jenis_id", "");
-    setValue("no_surat", "");
-    setValue("tipe", tipe);
-    setTglSurat("");
-    setValue("tgl_surat", "");
-    setValue("hal", "");
-    setValue("dari_ke", "");
-    setValue("gambar", "");
+    setValue("pegawai_id", "");
+    setValue("jenjang", "");
+    setValue("instansi", "");
+    setMulai("");
+    setValue("mulai", "");
+    setSeles("");
+    setValue("seles", "");
   };
 
   // data edit
   useEffect(() => {
     if (dtEdit) {
       setValue("id", dtEdit.id);
-      setValue("no_surat", dtEdit.no_surat);
-      setValue("jenis_id", parseInt(dtEdit.jenis_id));
-      setValue("tipe", dtEdit.tipe);
-      setValue("tgl_surat", dtEdit.tgl_surat);
-      setTglSurat(new Date(dtEdit.tgl_surat));
-      setValue("hal", dtEdit.hal);
-      setValue("status", dtEdit.status);
-      setValue("dari_ke", dtEdit.dari_ke);
-      setValue("gambar", dtEdit.gambar);
+      setValue("pegawai_id", dtEdit.pegawai_id);
+      setValue("jenjang", dtEdit.jenjang);
+      setValue("instansi", dtEdit.instansi);
+      setValue("mulai", dtEdit.mulai);
+      setMulai(new Date(dtEdit.mulai));
+      setValue("seles", dtEdit.seles);
+      setSeles(new Date(dtEdit.seles));
     } else {
       resetForm();
     }
@@ -97,7 +90,7 @@ const Form = ({ showModal, setShowModal, dtEdit, tipe }: Props) => {
 
   return (
     <ModalDefault
-      title="Form Surat"
+      title="Form RiwayatPendidikan"
       showModal={showModal}
       setShowModal={setShowModal}
     >
@@ -113,10 +106,10 @@ const Form = ({ showModal, setShowModal, dtEdit, tipe }: Props) => {
             watch={watch}
             setValue={setValue}
             showModal={showModal}
-            tglSurat={tglSurat}
-            setTglSurat={setTglSurat}
-            myFile={myFile}
-            setMyFile={setMyFile}
+            mulai={mulai}
+            setMulai={setMulai}
+            seles={seles}
+            setSeles={setSeles}
           />
         </div>
         <div>

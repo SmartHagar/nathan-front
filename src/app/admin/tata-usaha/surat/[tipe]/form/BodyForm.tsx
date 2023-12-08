@@ -3,6 +3,7 @@
 import InputDate from "@/components/input/InputDate";
 import InputFile from "@/components/input/InputFile";
 import InputTextDefault from "@/components/input/InputTextDefault";
+import { SelectDefault } from "@/components/select/SelectDefault";
 import SelectFromDb from "@/components/select/SelectFromDB";
 import useJenisApi from "@/stores/api/Jenis";
 import React, { FC, useEffect } from "react";
@@ -19,7 +20,8 @@ type Props = {
   showModal: boolean;
   tglSurat: Date | string;
   setTglSurat: any;
-  
+  myFile: any;
+  setMyFile: any;
 };
 
 const BodyForm: FC<Props> = ({
@@ -32,6 +34,8 @@ const BodyForm: FC<Props> = ({
   showModal,
   tglSurat,
   setTglSurat,
+  myFile,
+  setMyFile,
 }) => {
   const { setJenis, dtJenis } = useJenisApi();
   // memanggil data jenis
@@ -76,7 +80,7 @@ const BodyForm: FC<Props> = ({
         label="Tgl. Surat"
         required
         errors={errors.tgl_surat}
-        addClass="col-span-4"
+        addClass="col-span-4 lg:col-span-2"
       />
       <InputTextDefault
         label="Dari Ke"
@@ -96,16 +100,32 @@ const BodyForm: FC<Props> = ({
         errors={errors.hal}
         addClass="col-span-4"
       />
+
+      <SelectDefault
+        label="Status"
+        defaultOption="Pilih Status"
+        register={register}
+        errors={errors}
+        name="status"
+        options={[
+          { value: "proses", label: "Proses" },
+          { value: "sukses", label: "Sukses" },
+        ]}
+        addClass="col-span-4"
+      />
+
       <InputFile
-        label="Gambar Surat"
+        label="Gambar"
         name="gambar"
         register={register}
-        accept="image/*"
+        accept="image/*, .pdf"
         required
         errors={errors.gambar}
         addClass="col-span-4"
         setValue={setValue}
         fileEdit={dtEdit?.gambar}
+        myFile={myFile}
+        setMyFile={setMyFile}
       />
     </>
   );

@@ -46,6 +46,7 @@ const useSurat = create(
       formData.append("no_surat", row.no_surat);
       formData.append("tgl_surat", row.tgl_surat);
       formData.append("hal", row.hal);
+      formData.append("status", row.status);
       formData.append("dari_ke", row.dari_ke);
       formData.append("gambar", row.gambar);
       return formData;

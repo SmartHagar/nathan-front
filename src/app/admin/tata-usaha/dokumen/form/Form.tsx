@@ -24,6 +24,7 @@ type Inputs = {
 
 const Form = ({ showModal, setShowModal, dtEdit, tipe }: Props) => {
   // state
+  const [myFile, setMyFile] = useState<any>();
   // store
   const { addData, updateData } = useDokumen();
   // hook form
@@ -92,6 +93,8 @@ const Form = ({ showModal, setShowModal, dtEdit, tipe }: Props) => {
             watch={watch}
             setValue={setValue}
             showModal={showModal}
+            myFile={myFile}
+            setMyFile={setMyFile}
           />
         </div>
         <div>

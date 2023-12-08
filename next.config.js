@@ -5,7 +5,7 @@
 
 const nextConfig = {
   images: {
-    domains: ["127.0.0.1", "back.alumni.fstuogp.com"],
+    domains: ["127.0.0.1", "nathan.apisparta.my.id"],
   },
 };
 

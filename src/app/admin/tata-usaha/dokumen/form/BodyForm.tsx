@@ -15,6 +15,8 @@ type Props = {
   watch: any;
   setValue: any;
   showModal: boolean;
+  myFile: any;
+  setMyFile: any;
 };
 
 const BodyForm: FC<Props> = ({
@@ -25,6 +27,8 @@ const BodyForm: FC<Props> = ({
   watch,
   setValue,
   showModal,
+  myFile,
+  setMyFile,
 }) => {
   return (
     <>
@@ -41,11 +45,14 @@ const BodyForm: FC<Props> = ({
         label="File"
         name="file"
         register={register}
+        accept="image/*, .pdf"
         required
         errors={errors.file}
         addClass="col-span-4"
         setValue={setValue}
         fileEdit={dtEdit?.file}
+        myFile={myFile}
+        setMyFile={setMyFile}
       />
     </>
   );

@@ -3,7 +3,7 @@
 import LoadingSpiner from "@/components/loading/LoadingSpiner";
 import PaginationDefault from "@/components/pagination/PaginationDefault";
 import TablesDefault from "@/components/tables/TablesDefault";
-import useSurat from "@/stores/crud/tataUsaha/Surat";
+import useRiwayatJabatan from "@/stores/crud/personalia/RiwayatJabatan";
 import React, { FC, useEffect, useState } from "react";
 
 type DeleteProps = {
@@ -15,27 +15,27 @@ type Props = {
   setDelete: ({ id, isDelete }: DeleteProps) => void;
   setEdit: (row: any) => void;
   search: string;
-  tipe: string;
 };
 
-const ShowData: FC<Props> = ({ setDelete, setEdit, search, tipe }) => {
-  const { setSurat, dtSurat } = useSurat();
+const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
+  const { setRiwayatJabatan, dtRiwayatJabatan } = useRiwayatJabatan();
   // state
   const [page, setPage] = useState<number>(1);
   const [limit, setLimit] = useState<number>(10);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [jenis, setJenis] = useState<string>("");
 
-  const fetchDataSurat = async () => {
-    const res = await setSurat({
+  const fetchDataRiwayatJabatan = async () => {
+    const res = await setRiwayatJabatan({
       page,
       limit,
       search,
-      tipe,
+      jenis,
     });
     setIsLoading(false);
   };
   useEffect(() => {
-    fetchDataSurat();
+    fetchDataRiwayatJabatan();
 
     return () => {};
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -43,29 +43,14 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search, tipe }) => {
   // ketika search berubah
   useEffect(() => {
     setPage(1);
-    fetchDataSurat();
+    fetchDataRiwayatJabatan();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search]);
 
   // table
-  const headTable = [
-    "No",
-    "Jenis Surat",
-    "Hal",
-    "Dari",
-    "Status",
-    "Tgl Surat",
-    "Gambar / File",
-    "Aksi",
-  ];
-  const tableBodies = [
-    "jenis.nama",
-    "hal",
-    "dari_ke",
-    "status",
-    "tgl_surat",
-    "gambar",
-  ];
+  const headTable = ["No", "Nama", "Jabatan", "Mulai", "Selesai", "Aksi"];
+  const tableBodies = ["pegawai.nama", "jabatan.nama", "mulai", "seles"];
+
   return (
     <div className="flex-1 flex-col max-w-full h-full overflow-auto">
       {isLoading ? (
@@ -76,7 +61,7 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search, tipe }) => {
             <TablesDefault
               headTable={headTable}
               tableBodies={tableBodies}
-              dataTable={dtSurat.data}
+              dataTable={dtRiwayatJabatan.data}
               page={page}
               limit={limit}
               setEdit={setEdit}
@@ -85,11 +70,11 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search, tipe }) => {
               hapus={true}
             />
           </div>
-          {dtSurat?.last_page > 1 && (
+          {dtRiwayatJabatan?.last_page > 1 && (
             <div className="mt-4">
               <PaginationDefault
-                currentPage={dtSurat?.current_page}
-                totalPages={dtSurat?.last_page}
+                currentPage={dtRiwayatJabatan?.current_page}
+                totalPages={dtRiwayatJabatan?.last_page}
                 setPage={setPage}
               />
             </div>

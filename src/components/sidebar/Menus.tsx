@@ -7,7 +7,14 @@ interface Menu {
   subMenus?: Menu[];
 }
 
-import { BsHouseDoorFill, BsLampFill, BsPeopleFill } from "react-icons/bs";
+import {
+  BsHouseDoorFill,
+  BsLampFill,
+  BsPeopleFill,
+  BsFillSignpost2Fill,
+  BsFillWrenchAdjustableCircleFill,
+  BsFillMagnetFill,
+} from "react-icons/bs";
 const menus: Menu[] = [
   {
     name: "Home",
@@ -18,7 +25,7 @@ const menus: Menu[] = [
     name: "Tata Usaha",
     href: "#",
     slug: "tata-usaha",
-    icon: <BsLampFill />,
+    icon: <BsFillMagnetFill />,
     subMenus: [
       {
         name: "Jenis",
@@ -41,12 +48,12 @@ const menus: Menu[] = [
   {
     name: "Pangkat",
     href: "/admin/pangkat",
-    icon: <BsHouseDoorFill />,
+    icon: <BsFillSignpost2Fill />,
   },
   {
     name: "Jabatan",
     href: "/admin/jabatan",
-    icon: <BsHouseDoorFill />,
+    icon: <BsFillWrenchAdjustableCircleFill />,
   },
   {
     name: "Personalia",
@@ -92,21 +99,39 @@ const menus: Menu[] = [
   },
 ];
 // list menu stackholder
-const stackholderMenus = [
+const pegawaiMenus = [
   {
-    name: "Dashboard",
-    href: "",
-    slug: "dashboard",
+    name: "Home",
+    href: "/pegawai",
     icon: <BsHouseDoorFill />,
-    subMenus: false,
   },
   {
-    name: "Penilaian",
-    href: "/penilaian",
-    icon: <BsPeopleFill />,
+    name: "Riwayat",
+    href: "#",
+    slug: "riwayat",
+    icon: <BsFillMagnetFill />,
+    subMenus: [
+      {
+        name: "Jabatan",
+        href: "/pegawai/riwayat/jabatan",
+      },
+      {
+        name: "Pendidikan",
+        href: "/pegawai/riwayat/pendidikan",
+      },
+      {
+        name: "Pekerjaan",
+        href: "/pegawai/riwayat/pekerjaan",
+      },
+    ],
+  },
+  {
+    name: "Dokumen",
+    href: "/pegawai/dokumen",
+    icon: <BsFillSignpost2Fill />,
   },
 ];
 
 export default menus;
-export { stackholderMenus };
+export { pegawaiMenus };
 export type { Menu };

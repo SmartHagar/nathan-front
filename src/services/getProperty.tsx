@@ -27,10 +27,22 @@ const getProperty = (obj: any, prop: any) => {
       return moment(obj).format("DD/MM/YYYY");
     }
     if (prop === "gambar" || prop === "foto") {
+      // mengambil extension dari obj
+      const extension = obj.split(".").pop();
       return (
-        obj && (
+        obj &&
+        (extension === "pdf" ? (
+          <a
+            href={`${BASE_URL}/${obj}`}
+            target="_blank"
+            rel="noreferrer"
+            className="text-blue-700"
+          >
+            Lihat File
+          </a>
+        ) : (
           <Image src={`${BASE_URL}/${obj}`} width={100} height={100} alt="" />
-        )
+        ))
       );
     }
     if (prop === "file") {
