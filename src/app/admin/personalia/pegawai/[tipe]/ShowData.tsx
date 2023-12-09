@@ -6,7 +6,8 @@ import TablesDefault from "@/components/tables/TablesDefault";
 import usePegawai from "@/stores/crud/personalia/Pegawai";
 import React, { FC, useEffect, useState } from "react";
 import ShowUser from "./ShowUser";
-import { BsInfoCircle } from "react-icons/bs";
+import { BsFillPrinterFill, BsInfoCircle } from "react-icons/bs";
+import { BASE_URL } from "@/services/baseURL";
 
 type DeleteProps = {
   id?: number | string;
@@ -66,13 +67,26 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search, tipe }) => {
   tipe === "dosen" &&
     (headTable.splice(2, 0, "NIDN"), tableBodies.splice(1, 0, "NIDN"));
 
+  const cetakPDF = (id: number | string) => {
+    // open link new tab
+    window.open(`${BASE_URL}/export/biodata/${id}`, "_blank");
+  };
+
   const costume = (row: any) => {
     return (
-      <BsInfoCircle
-        size={20}
-        className="cursor-pointer hover:text-link"
-        onClick={() => (setRowData(row), setShowModal(true))}
-      />
+      <>
+        <BsFillPrinterFill
+          size={20}
+          title="Cetak Biodata"
+          className="cursor-pointer hover:text-link"
+          onClick={() => cetakPDF(row.id)}
+        />
+        <BsInfoCircle
+          size={20}
+          className="cursor-pointer hover:text-link"
+          onClick={() => (setRowData(row), setShowModal(true))}
+        />
+      </>
     );
   };
   return (
