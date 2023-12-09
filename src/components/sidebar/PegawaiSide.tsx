@@ -192,7 +192,7 @@ const PegawaiSide = () => {
           ) : (
             <button
               onClick={handleSingout}
-              className="flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg text-white hover:underline hover:text-gray-200"
+              className="flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg text-primary hover:underline hover:text-gray-200"
             >
               <span>Sign Out</span>
             </button>

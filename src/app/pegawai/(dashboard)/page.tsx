@@ -42,7 +42,10 @@ const Dashboard = (props: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showPegawai?.id]);
 
-  console.log({ dtRiwayatJabatan });
+  const cetakPDF = () => {
+    // open link new tab
+    window.open(`${BASE_URL}/export/biodata/${showPegawai?.id}`, "_blank");
+  };
 
   return (
     <section className="text-gray-600 body-font h-full">
@@ -151,7 +154,7 @@ const Dashboard = (props: Props) => {
             </div>
           </div>
           <div className="">
-            <ButtonSecondary text="Cetak" onClick={() => {}} />
+            <ButtonSecondary text="Cetak" onClick={cetakPDF} />
           </div>
         </div>
       </div>
