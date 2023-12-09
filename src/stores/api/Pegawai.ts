@@ -3,6 +3,7 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 import { api } from "@/services/baseURL";
+import useDokumen from "../crud/personalia/DokumenPegawai";
 
 type Props = {
   page?: number;
@@ -63,6 +64,10 @@ const usePegawaiApi = create(
             search,
             page,
           },
+        });
+        useDokumen.getState().setDokumen({
+          page,
+          search,
         });
         set((state) => ({ ...state, dtPegawai: response.data.data }));
         return {

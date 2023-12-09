@@ -121,6 +121,7 @@ const useDokumen = create(
           data: res.data,
         };
       } catch (error: any) {
+        console.log({ error });
         return {
           status: "error",
           data: error.response.data,
@@ -144,6 +145,10 @@ const useDokumen = create(
             ),
           },
         }));
+        // call setApiDokumenPegawai from usePegawaiApi
+        usePegawaiApi
+          .getState()
+          .setApiDokumenPegawai({ id: res.data.data.pegawai_id });
         return {
           status: "berhasil hapus",
           data: res.data,
@@ -193,6 +198,9 @@ const useDokumen = create(
             }),
           },
         }));
+        usePegawaiApi
+          .getState()
+          .setApiDokumenPegawai({ id: response.data.data.pegawai_id });
         return {
           status: "berhasil update",
           data: response.data,
