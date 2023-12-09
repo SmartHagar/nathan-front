@@ -33,7 +33,7 @@ const getProperty = (obj: any, prop: any) => {
     ) {
       return moment(obj).format("DD/MMM/YYYY");
     }
-    if (prop === "gambar" || prop === "foto") {
+    if (prop === "gambar" || prop === "foto" || prop === "file") {
       // mengambil extension dari obj
       const extension = obj.split(".").pop();
       return (
@@ -50,15 +50,6 @@ const getProperty = (obj: any, prop: any) => {
         ) : (
           <Image src={`${BASE_URL}/${obj}`} width={100} height={100} alt="" />
         ))
-      );
-    }
-    if (prop === "file") {
-      return (
-        obj && (
-          <a href={`${BASE_URL}/${obj}`} target="_blank">
-            Lihat File
-          </a>
-        )
       );
     }
     return <p className="capitalize">{obj}</p>;

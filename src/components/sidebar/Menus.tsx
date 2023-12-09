@@ -74,6 +74,10 @@ const menus: Menu[] = [
             name: "Tendik",
             href: "/admin/personalia/pegawai/tendik",
           },
+          {
+            name: "Pekarya",
+            href: "/admin/personalia/pegawai/pekarya",
+          },
         ],
       },
       {
@@ -94,6 +98,10 @@ const menus: Menu[] = [
             href: "/admin/personalia/riwayat/pekerjaan",
           },
         ],
+      },
+      {
+        name: "Dokumen",
+        href: "/admin/personalia/dokumen",
       },
     ],
   },
