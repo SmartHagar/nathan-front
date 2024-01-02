@@ -48,7 +48,7 @@ const Dashboard = (props: Props) => {
   };
 
   return (
-    <section className="text-gray-600 body-font h-full">
+    <section className="text-gray-600 body-font h-full overflow-auto">
       <div className="container mx-auto flex px-5 pt-14 pb-4 md:flex-row flex-col items-center  h-full">
         <div className="lg:max-w-xs md:w-1/2 w-5/6 mb-10 md:mb-0">
           {showPegawai?.foto && (
