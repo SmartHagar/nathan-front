@@ -5,7 +5,13 @@
 
 const nextConfig = {
   images: {
-    domains: ["127.0.0.1", "nathan.apisparta.my.id"],
+    unoptimized: true,
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**",
+      },
+    ],
   },
 };
 
