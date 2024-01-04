@@ -76,7 +76,7 @@ const Login = (props: Props) => {
   return (
     <div className="min-h-screen bg-login bg-cover bg-center">
       <div className="flex flex-col items-center min-h-screen justify-center z-10">
-        <div className="bg-white/20 w-[35rem] backdrop-blur-sm rounded py-8 px-4 md:py-8 md:px-12 flex flex-col items-center justify-center z-50">
+        <div className="bg-white/20 w-full md:w-[35rem] backdrop-blur-sm rounded py-8 px-4 md:py-8 md:px-12 flex flex-col items-center justify-center z-50">
           <div className="w-full mb-2">
             <h3 className="text-2xl font-bold text-center">
               Selamat datang di
