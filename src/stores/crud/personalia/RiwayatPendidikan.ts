@@ -17,12 +17,7 @@ type Props = {
 type Store = {
   dtRiwayatPendidikan: any;
   showRiwayatPendidikan: any;
-  setRiwayatPendidikan: ({
-    page = 1,
-    limit = 10,
-    search,
-    tipe,
-  }: Props) => Promise<{
+  setRiwayatPendidikan: ({ page, limit, search, tipe }: Props) => Promise<{
     status: string;
     data?: {};
     error?: {};

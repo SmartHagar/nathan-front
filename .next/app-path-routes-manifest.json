@@ -1,0 +1,20 @@
+{
+  "/favicon.ico/route": "/favicon.ico",
+  "/(auth)/page": "/",
+  "/admin/page": "/admin",
+  "/pegawai/(dashboard)/page": "/pegawai",
+  "/admin/pangkat/page": "/admin/pangkat",
+  "/admin/jabatan/page": "/admin/jabatan",
+  "/pegawai/dokumen/page": "/pegawai/dokumen",
+  "/admin/personalia/dokumen/page": "/admin/personalia/dokumen",
+  "/admin/tata-usaha/dokumen/page": "/admin/tata-usaha/dokumen",
+  "/admin/tata-usaha/jenis/page": "/admin/tata-usaha/jenis",
+  "/pegawai/riwayat/jabatan/page": "/pegawai/riwayat/jabatan",
+  "/pegawai/riwayat/pendidikan/page": "/pegawai/riwayat/pendidikan",
+  "/pegawai/riwayat/pekerjaan/page": "/pegawai/riwayat/pekerjaan",
+  "/admin/personalia/riwayat/jabatan/page": "/admin/personalia/riwayat/jabatan",
+  "/admin/personalia/riwayat/pekerjaan/page": "/admin/personalia/riwayat/pekerjaan",
+  "/admin/personalia/riwayat/pendidikan/page": "/admin/personalia/riwayat/pendidikan",
+  "/admin/personalia/pegawai/[tipe]/page": "/admin/personalia/pegawai/[tipe]",
+  "/admin/tata-usaha/surat/[tipe]/page": "/admin/tata-usaha/surat/[tipe]"
+}

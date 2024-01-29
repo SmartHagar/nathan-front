@@ -17,12 +17,7 @@ type Props = {
 type Store = {
   dtRiwayatPekerjaan: any;
   showRiwayatPekerjaan: any;
-  setRiwayatPekerjaan: ({
-    page = 1,
-    limit = 10,
-    search,
-    tipe,
-  }: Props) => Promise<{
+  setRiwayatPekerjaan: ({ page, limit, search, tipe }: Props) => Promise<{
     status: string;
     data?: {};
     error?: {};

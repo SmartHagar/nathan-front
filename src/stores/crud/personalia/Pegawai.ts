@@ -15,7 +15,7 @@ type Props = {
 type Store = {
   dtPegawai: any;
   showPegawai: any;
-  setPegawai: ({ page = 1, limit = 10, search, tipe }: Props) => Promise<{
+  setPegawai: ({ page, limit, search, tipe }: Props) => Promise<{
     status: string;
     data?: {};
     error?: {};
