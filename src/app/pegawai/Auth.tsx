@@ -24,7 +24,7 @@ const Auth: FC<Props> = (props: Props) => {
     } else {
       const role = Cookies.get("role");
       if (role !== "pegawai") {
-        route.push(`/${role}`);
+        route.push(`/${role}/dashboard`);
       }
     }
     return res;

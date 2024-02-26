@@ -67,7 +67,7 @@ const Login = (props: Props) => {
       Cookies.set("token", data.token);
       Cookies.set("role", data.hak);
       Cookies.set("user_id", data.id);
-      router.push(data.hak);
+      router.push(`${data.hak}/dashboard`);
     }
     setTimeout(() => {
       setIsLoading(false);
