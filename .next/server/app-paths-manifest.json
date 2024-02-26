@@ -1,8 +1,8 @@
 {
   "/favicon.ico/route": "app/favicon.ico/route.js",
   "/(auth)/page": "app/(auth)/page.js",
-  "/admin/page": "app/admin/page.js",
-  "/pegawai/(dashboard)/page": "app/pegawai/(dashboard)/page.js",
+  "/admin/dashboard/page": "app/admin/dashboard/page.js",
+  "/pegawai/dashboard/page": "app/pegawai/dashboard/page.js",
   "/admin/jabatan/page": "app/admin/jabatan/page.js",
   "/admin/pangkat/page": "app/admin/pangkat/page.js",
   "/pegawai/dokumen/page": "app/pegawai/dokumen/page.js",

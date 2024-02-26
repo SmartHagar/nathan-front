@@ -544,7 +544,7 @@ const Login = (props)=>{
             js_cookie/* default */.Z.set("token", data.token);
             js_cookie/* default */.Z.set("role", data.hak);
             js_cookie/* default */.Z.set("user_id", data.id);
-            router.push(data.hak);
+            router.push(`${data.hak}/dashboard`);
         }
         setTimeout(()=>{
             setIsLoading(false);

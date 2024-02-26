@@ -1,8 +1,8 @@
 {
   "/favicon.ico/route": "/favicon.ico",
   "/(auth)/page": "/",
-  "/admin/page": "/admin",
-  "/pegawai/(dashboard)/page": "/pegawai",
+  "/admin/dashboard/page": "/admin/dashboard",
+  "/pegawai/dashboard/page": "/pegawai/dashboard",
   "/admin/jabatan/page": "/admin/jabatan",
   "/admin/pangkat/page": "/admin/pangkat",
   "/pegawai/dokumen/page": "/pegawai/dokumen",

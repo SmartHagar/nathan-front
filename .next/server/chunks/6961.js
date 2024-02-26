@@ -56,7 +56,7 @@ const Auth = (props)=>{
         } else {
             const role = js_cookie/* default */.Z.get("role");
             if (role !== "pegawai") {
-                route.push(`/${role}`);
+                route.push(`/${role}/dashboard`);
             }
         }
         return res;
