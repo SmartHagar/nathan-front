@@ -5,6 +5,7 @@ import PaginationDefault from "@/components/pagination/PaginationDefault";
 import TablesDefault from "@/components/tables/TablesDefault";
 import useRiwayatJabatan from "@/stores/crud/personalia/RiwayatJabatan";
 import React, { FC, useEffect, useState } from "react";
+import Cookies from "js-cookie";
 
 type DeleteProps = {
   id?: number | string;

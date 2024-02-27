@@ -8,6 +8,7 @@ import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { BsMenuButtonWide } from "react-icons/bs";
+import RoleProvider from "@/context/roleContext";
 
 type Props = {
   children: React.ReactNode;
@@ -64,31 +65,33 @@ const Layout = (props: Props) => {
   };
 
   return (
-    <div>
-      <div className="flex min-h-screen h-screen text-black bg-bg">
-        <aside
-          className={`w-[18rem] z-50 lg:block ${
-            isVisible ? "block absolute bg-bg" : "hidden"
-          }`}
-        >
-          <AdminSide />
-        </aside>
-        <div className="flex h-full w-full overflow-hidden p-1 rounded-lg flex-col">
-          <div className="mb-1 flex items-center justify-between lg:-mx-4 lg:-mt-2 lg:block">
-            <HeaderAdmin />
-            <div
-              className="lg:hidden mr-2 text-xl cursor-pointer"
-              onClick={handleClick}
-            >
-              <BsMenuButtonWide />
+    <RoleProvider>
+      <div>
+        <div className="flex min-h-screen h-screen text-black bg-bg">
+          <aside
+            className={`w-[18rem] z-50 lg:block ${
+              isVisible ? "block absolute bg-bg" : "hidden"
+            }`}
+          >
+            <AdminSide />
+          </aside>
+          <div className="flex h-full w-full overflow-hidden p-1 rounded-lg flex-col">
+            <div className="mb-1 flex items-center justify-between lg:-mx-4 lg:-mt-2 lg:block">
+              <HeaderAdmin />
+              <div
+                className="lg:hidden mr-2 text-xl cursor-pointer"
+                onClick={handleClick}
+              >
+                <BsMenuButtonWide />
+              </div>
             </div>
-          </div>
-          <div className="bg-white h-full overflow-hidden p-2 drop-shadow-2xl shadow-black rounded-lg">
-            {props.children}
+            <div className="bg-white h-full overflow-hidden p-2 drop-shadow-2xl shadow-black rounded-lg">
+              {props.children}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </RoleProvider>
   );
 };
 

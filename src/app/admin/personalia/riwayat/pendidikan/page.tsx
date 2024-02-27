@@ -10,6 +10,7 @@ import { Toaster } from "react-hot-toast";
 import toastShow from "@/utils/toast-show";
 import InputTextSearch from "@/components/input/InputTextSerch";
 import useRiwayatPendidikan from "@/stores/crud/personalia/RiwayatPendidikan";
+import Cookies from "js-cookie";
 
 // type setDelete
 type Delete = {

@@ -3,5 +3,6 @@
   "/(auth)/page": "app/(auth)/page.js",
   "/admin/(dashboard)/page": "app/admin/(dashboard)/page.js",
   "/admin/pangkat/page": "app/admin/pangkat/page.js",
+  "/admin/jabatan/page": "app/admin/jabatan/page.js",
   "/admin/tata-usaha/jenis/page": "app/admin/tata-usaha/jenis/page.js"
 }

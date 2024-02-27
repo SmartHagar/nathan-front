@@ -11,6 +11,7 @@ import toastShow from "@/utils/toast-show";
 import InputTextSearch from "@/components/input/InputTextSerch";
 import { PegawaiContext } from "@/context/pegawaiContext";
 import useDokumen from "@/stores/crud/personalia/DokumenPegawai";
+import Cookies from "js-cookie";
 
 // type setDelete
 type Delete = {

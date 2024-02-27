@@ -10,6 +10,7 @@ import usePegawai from "@/stores/crud/personalia/Pegawai";
 import { Toaster } from "react-hot-toast";
 import toastShow from "@/utils/toast-show";
 import InputTextSearch from "@/components/input/InputTextSerch";
+import Cookies from "js-cookie";
 
 // type setDelete
 type Delete = {

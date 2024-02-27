@@ -5,6 +5,7 @@ import PaginationDefault from "@/components/pagination/PaginationDefault";
 import TablesDefault from "@/components/tables/TablesDefault";
 import usePangkat from "@/stores/crud/personalia/Pangkat";
 import React, { FC, useEffect, useState } from "react";
+import Cookies from "js-cookie";
 
 type DeleteProps = {
   id?: number | string;

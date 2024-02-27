@@ -8,6 +8,7 @@ import React, { FC, useEffect, useState } from "react";
 import ShowUser from "./ShowUser";
 import { BsFillPrinterFill, BsInfoCircle } from "react-icons/bs";
 import { BASE_URL } from "@/services/baseURL";
+import Cookies from "js-cookie";
 
 type DeleteProps = {
   id?: number | string;

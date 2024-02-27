@@ -7,6 +7,7 @@ import { PegawaiContext } from "@/context/pegawaiContext";
 import usePegawaiApi from "@/stores/api/Pegawai";
 import useDokumen from "@/stores/crud/personalia/DokumenPegawai";
 import React, { FC, useContext, useEffect, useState } from "react";
+import Cookies from "js-cookie";
 
 type DeleteProps = {
   id?: number | string;

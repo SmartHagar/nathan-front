@@ -3,8 +3,9 @@
 import LoadingSpiner from "@/components/loading/LoadingSpiner";
 import PaginationDefault from "@/components/pagination/PaginationDefault";
 import TablesDefault from "@/components/tables/TablesDefault";
+import { RoleContext } from "@/context/roleContext";
 import useJabatan from "@/stores/crud/personalia/Jabatan";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useContext, useEffect, useState } from "react";
 
 type DeleteProps = {
   id?: number | string;
@@ -23,6 +24,8 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
   const [page, setPage] = useState<number>(1);
   const [limit, setLimit] = useState<number>(10);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  const { role } = useContext(RoleContext);
 
   const fetchDataJabatan = async () => {
     const res = await setJabatan({
@@ -48,6 +51,7 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
   // table
   const headTable = ["No", "Jenis Jabatan", "Jabatan", "Aksi"];
   const tableBodies = ["jenis", "nama"];
+  role !== "personalia" && headTable.splice(3);
   return (
     <div className="flex-1 flex-col max-w-full h-full overflow-auto">
       {isLoading ? (
@@ -63,8 +67,8 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
               limit={limit}
               setEdit={setEdit}
               setDelete={setDelete}
-              ubah={true}
-              hapus={true}
+              ubah={role === "personalia" ? true : false}
+              hapus={role === "personalia" ? true : false}
             />
           </div>
           {dtJabatan?.last_page > 1 && (
