@@ -4,11 +4,12 @@ import LoadingSpiner from "@/components/loading/LoadingSpiner";
 import PaginationDefault from "@/components/pagination/PaginationDefault";
 import TablesDefault from "@/components/tables/TablesDefault";
 import usePegawai from "@/stores/crud/personalia/Pegawai";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useContext, useEffect, useState } from "react";
 import ShowUser from "./ShowUser";
 import { BsFillPrinterFill, BsInfoCircle } from "react-icons/bs";
 import { BASE_URL } from "@/services/baseURL";
 import Cookies from "js-cookie";
+import { RoleContext } from "@/context/roleContext";
 
 type DeleteProps = {
   id?: number | string;
@@ -30,6 +31,8 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search, tipe }) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [rowData, setRowData] = useState<any>();
+
+  const { role } = useContext(RoleContext);
 
   const fetchDataPegawai = async () => {
     const res = await setPegawai({
@@ -63,6 +66,7 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search, tipe }) => {
     "Foto",
     "Aksi",
   ];
+  role !== "personalia" && headTable.splice(6);
   // push NIDN to headTable index 2
   const tableBodies = ["NIK", "nama", "pangkat_gol_ru", "thn_terima", "foto"];
   tipe === "dosen" &&
@@ -110,9 +114,9 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search, tipe }) => {
               limit={limit}
               setEdit={setEdit}
               setDelete={setDelete}
-              ubah={true}
-              hapus={true}
-              costume={costume}
+              ubah={role === "personalia" ? true : false}
+              hapus={role === "personalia" ? true : false}
+              costume={role === "personalia" && costume}
             />
           </div>
           {dtPegawai?.last_page > 1 && (

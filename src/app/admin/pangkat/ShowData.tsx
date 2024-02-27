@@ -3,9 +3,9 @@
 import LoadingSpiner from "@/components/loading/LoadingSpiner";
 import PaginationDefault from "@/components/pagination/PaginationDefault";
 import TablesDefault from "@/components/tables/TablesDefault";
+import { RoleContext } from "@/context/roleContext";
 import usePangkat from "@/stores/crud/personalia/Pangkat";
-import React, { FC, useEffect, useState } from "react";
-import Cookies from "js-cookie";
+import React, { FC, useContext, useEffect, useState } from "react";
 
 type DeleteProps = {
   id?: number | string;
@@ -24,6 +24,8 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
   const [page, setPage] = useState<number>(1);
   const [limit, setLimit] = useState<number>(10);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  const { role } = useContext(RoleContext);
 
   const fetchDataPangkat = async () => {
     const res = await setPangkat({
@@ -49,6 +51,8 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
   // table
   const headTable = ["No", "Golongan", "Pangkat", "Ruangan", "Aksi"];
   const tableBodies = ["gol", "pangkat", "ruang"];
+
+  role !== "personalia" && headTable.splice(4);
   return (
     <div className="flex-1 flex-col max-w-full h-full overflow-auto">
       {isLoading ? (
@@ -64,8 +68,8 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
               limit={limit}
               setEdit={setEdit}
               setDelete={setDelete}
-              ubah={true}
-              hapus={true}
+              ubah={role === "personalia" ? true : false}
+              hapus={role === "personalia" ? true : false}
             />
           </div>
           {dtPangkat?.last_page > 1 && (

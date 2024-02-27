@@ -4,8 +4,9 @@ import LoadingSpiner from "@/components/loading/LoadingSpiner";
 import PaginationDefault from "@/components/pagination/PaginationDefault";
 import TablesDefault from "@/components/tables/TablesDefault";
 import useRiwayatJabatan from "@/stores/crud/personalia/RiwayatJabatan";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useContext, useEffect, useState } from "react";
 import Cookies from "js-cookie";
+import { RoleContext } from "@/context/roleContext";
 
 type DeleteProps = {
   id?: number | string;
@@ -25,6 +26,8 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
   const [limit, setLimit] = useState<number>(10);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [jenis, setJenis] = useState<string>("");
+
+  const { role } = useContext(RoleContext);
 
   const fetchDataRiwayatJabatan = async () => {
     const res = await setRiwayatJabatan({
@@ -52,6 +55,7 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
   const headTable = ["No", "Nama", "Jabatan", "Mulai", "Selesai", "Aksi"];
   const tableBodies = ["pegawai.nama", "jabatan.nama", "mulai", "seles"];
 
+  role !== "personalia" && headTable.splice(5);
   return (
     <div className="flex-1 flex-col max-w-full h-full overflow-auto">
       {isLoading ? (
@@ -67,8 +71,8 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
               limit={limit}
               setEdit={setEdit}
               setDelete={setDelete}
-              ubah={true}
-              hapus={true}
+              ubah={role === "personalia" && true}
+              hapus={role === "personalia" && true}
             />
           </div>
           {dtRiwayatJabatan?.last_page > 1 && (

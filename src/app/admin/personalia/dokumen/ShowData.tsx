@@ -4,10 +4,10 @@ import LoadingSpiner from "@/components/loading/LoadingSpiner";
 import PaginationDefault from "@/components/pagination/PaginationDefault";
 import TablesDefault from "@/components/tables/TablesDefault";
 import { PegawaiContext } from "@/context/pegawaiContext";
+import { RoleContext } from "@/context/roleContext";
 import usePegawaiApi from "@/stores/api/Pegawai";
 import useDokumen from "@/stores/crud/personalia/DokumenPegawai";
 import React, { FC, useContext, useEffect, useState } from "react";
-import Cookies from "js-cookie";
 
 type DeleteProps = {
   id?: number | string;
@@ -23,12 +23,13 @@ type Props = {
 
 const ShowData: FC<Props> = ({ setDelete, setEdit, search, tipe }) => {
   // context pegawai
-  const { showPegawai } = useContext(PegawaiContext);
   const { setDokumen, dtDokumen } = useDokumen();
   // state
   const [page, setPage] = useState<number>(1);
   const [limit, setLimit] = useState<number>(10);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  const { role } = useContext(RoleContext);
 
   const fetchDataDokumen = async () => {
     const res = await setDokumen({
@@ -43,7 +44,7 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search, tipe }) => {
 
     return () => {};
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page, limit, showPegawai?.id]);
+  }, [page, limit]);
   // ketika search berubah
   useEffect(() => {
     setPage(1);
@@ -54,6 +55,8 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search, tipe }) => {
   // table
   const headTable = ["No", "Nama", "Judul", "Gambar / File", "Aksi"];
   const tableBodies = ["pegawai.nama", "judul", "gambar"];
+
+  role !== "personalia" && headTable.splice(4);
   return (
     <div className="flex-1 flex-col max-w-full h-full overflow-auto">
       {isLoading ? (
@@ -69,8 +72,8 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search, tipe }) => {
               limit={limit}
               setEdit={setEdit}
               setDelete={setDelete}
-              ubah={true}
-              hapus={true}
+              ubah={role === "personalia" && true}
+              hapus={role === "personalia" && true}
             />
           </div>
           {dtDokumen?.last_page > 1 && (

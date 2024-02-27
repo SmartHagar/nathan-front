@@ -1,6 +1,6 @@
 /** @format */
 "use client";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import ShowData from "./ShowData";
 import ButtonPrimary from "@/components/button/ButtonPrimary";
@@ -10,7 +10,7 @@ import usePegawai from "@/stores/crud/personalia/Pegawai";
 import { Toaster } from "react-hot-toast";
 import toastShow from "@/utils/toast-show";
 import InputTextSearch from "@/components/input/InputTextSerch";
-import Cookies from "js-cookie";
+import { RoleContext } from "@/context/roleContext";
 
 // type setDelete
 type Delete = {
@@ -27,6 +27,8 @@ const Pegawai = ({ params }: { params: { tipe: string } }) => {
   const [idDel, setIdDel] = useState<number | string>();
   const [dtEdit, setDtEdit] = useState<any>();
   const [search, setSearch] = useState("");
+
+  const { role } = useContext(RoleContext);
 
   const handleTambah = () => {
     setShowModal(true);
@@ -64,26 +66,28 @@ const Pegawai = ({ params }: { params: { tipe: string } }) => {
           setShowDel={setShowDelete}
           setDelete={setDelete}
         />
-        <div className="mb-4 flex justify-between">
-          <div>
-            <p>
-              <span className="capitalize">
-                Silahkan Mengolah data {params.tipe}.{" "}
-              </span>
-              <span>
-                Klik pada tombol info untuk melihat email dan password{" "}
-                {params.tipe}{" "}
-              </span>
-            </p>
+        {role == "personalia" && (
+          <div className="mb-4 flex justify-between">
+            <div>
+              <p>
+                <span className="capitalize">
+                  Silahkan Mengolah data {params.tipe}.{" "}
+                </span>
+                <span>
+                  Klik pada tombol info untuk melihat email dan password{" "}
+                  {params.tipe}{" "}
+                </span>
+              </p>
+            </div>
+            <div>
+              <ButtonPrimary
+                addClass="capitalize"
+                text={`Tambah ${params.tipe}`}
+                onClick={handleTambah}
+              />
+            </div>
           </div>
-          <div>
-            <ButtonPrimary
-              addClass="capitalize"
-              text={`Tambah ${params.tipe}`}
-              onClick={handleTambah}
-            />
-          </div>
-        </div>
+        )}
         <InputTextSearch
           placeholder="Cari Pegawai"
           onChange={(e) => setSearch(e)}

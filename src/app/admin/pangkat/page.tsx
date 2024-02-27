@@ -1,6 +1,6 @@
 /** @format */
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import ShowData from "./ShowData";
 import ButtonPrimary from "@/components/button/ButtonPrimary";
@@ -10,6 +10,7 @@ import usePangkat from "@/stores/crud/personalia/Pangkat";
 import { Toaster } from "react-hot-toast";
 import toastShow from "@/utils/toast-show";
 import InputTextSearch from "@/components/input/InputTextSerch";
+import { RoleContext } from "@/context/roleContext";
 
 // type setDelete
 type Delete = {
@@ -26,6 +27,8 @@ const Pangkat = () => {
   const [idDel, setIdDel] = useState<number | string>();
   const [dtEdit, setDtEdit] = useState<any>();
   const [search, setSearch] = useState("");
+
+  const { role } = useContext(RoleContext);
 
   const handleTambah = () => {
     setShowModal(true);
@@ -62,12 +65,14 @@ const Pangkat = () => {
           setShowDel={setShowDelete}
           setDelete={setDelete}
         />
-        <div className="mb-4 flex justify-between">
-          <p>Silahkan Mengolah data Pangkat Personalia</p>
-          <div>
-            <ButtonPrimary text="Tambah Pangkat" onClick={handleTambah} />
+        {role === "personalia" && (
+          <div className="mb-4 flex justify-between">
+            <p>Silahkan Mengolah data Pangkat Personalia</p>
+            <div>
+              <ButtonPrimary text="Tambah Pangkat" onClick={handleTambah} />
+            </div>
           </div>
-        </div>
+        )}
         <InputTextSearch
           placeholder="Cari Pangkat"
           onChange={(e) => setSearch(e)}

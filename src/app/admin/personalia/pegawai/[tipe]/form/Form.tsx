@@ -80,7 +80,7 @@ const Form = ({ showModal, setShowModal, dtEdit, tipe }: Props) => {
       setValue("pangkat_id", dtEdit.pangkat_id);
       setValue("NIK", dtEdit.NIK);
       setValue("tipe", dtEdit.tipe);
-      setValue("NIDN", dtEdit.NIDN);
+      setValue("NIDN", dtEdit.NIDN || "");
       setValue("nama", dtEdit.nama);
       setValue("tempat_lahir", dtEdit.tempat_lahir);
       setValue("tgl_lahir", dtEdit.tgl_lahir);

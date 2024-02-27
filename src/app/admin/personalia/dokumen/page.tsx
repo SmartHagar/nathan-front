@@ -12,6 +12,7 @@ import InputTextSearch from "@/components/input/InputTextSerch";
 import { PegawaiContext } from "@/context/pegawaiContext";
 import useDokumen from "@/stores/crud/personalia/DokumenPegawai";
 import Cookies from "js-cookie";
+import { RoleContext } from "@/context/roleContext";
 
 // type setDelete
 type Delete = {
@@ -30,6 +31,8 @@ const Dokumen = ({ params }: { params: { tipe: string } }) => {
   const [idDel, setIdDel] = useState<number | string>();
   const [dtEdit, setDtEdit] = useState<any>();
   const [search, setSearch] = useState("");
+
+  const { role } = useContext(RoleContext);
 
   const handleTambah = () => {
     setShowModal(true);
@@ -67,14 +70,16 @@ const Dokumen = ({ params }: { params: { tipe: string } }) => {
           setShowDel={setShowDelete}
           setDelete={setDelete}
         />
-        <div className="mb-4 flex justify-between">
-          <p className="capitalize">
-            Silahkan Mengolah data Dokumen {params.tipe}
-          </p>
-          <div>
-            <ButtonPrimary text="Tambah Dokumen" onClick={handleTambah} />
+        {role === "personalia" && (
+          <div className="mb-4 flex justify-between">
+            <p className="capitalize">
+              Silahkan Mengolah data Dokumen {params.tipe}
+            </p>
+            <div>
+              <ButtonPrimary text="Tambah Dokumen" onClick={handleTambah} />
+            </div>
           </div>
-        </div>
+        )}
         <InputTextSearch
           placeholder="Cari Dokumen"
           onChange={(e) => setSearch(e)}
