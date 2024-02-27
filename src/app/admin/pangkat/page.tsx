@@ -10,7 +10,6 @@ import usePangkat from "@/stores/crud/personalia/Pangkat";
 import { Toaster } from "react-hot-toast";
 import toastShow from "@/utils/toast-show";
 import InputTextSearch from "@/components/input/InputTextSerch";
-import Cookies from "js-cookie";
 
 // type setDelete
 type Delete = {
