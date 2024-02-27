@@ -4,8 +4,9 @@ import LoadingSpiner from "@/components/loading/LoadingSpiner";
 import PaginationDefault from "@/components/pagination/PaginationDefault";
 import TablesDefault from "@/components/tables/TablesDefault";
 import useDokumen from "@/stores/crud/tataUsaha/Dokumen";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useContext, useEffect, useState } from "react";
 import Cookies from "js-cookie";
+import { RoleContext } from "@/context/roleContext";
 
 type DeleteProps = {
   id?: number | string;
@@ -25,6 +26,8 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search, tipe }) => {
   const [page, setPage] = useState<number>(1);
   const [limit, setLimit] = useState<number>(10);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  const { role } = useContext(RoleContext);
 
   const fetchDataDokumen = async () => {
     const res = await setDokumen({
@@ -51,6 +54,8 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search, tipe }) => {
   // table
   const headTable = ["No", "Judul", "File", "Aksi"];
   const tableBodies = ["judul", "file"];
+
+  role === "personalia" && headTable.splice(3);
   return (
     <div className="flex-1 flex-col max-w-full h-full overflow-auto">
       {isLoading ? (

@@ -4,8 +4,9 @@ import LoadingSpiner from "@/components/loading/LoadingSpiner";
 import PaginationDefault from "@/components/pagination/PaginationDefault";
 import TablesDefault from "@/components/tables/TablesDefault";
 import useJenis from "@/stores/crud/tataUsaha/Jenis";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useContext, useEffect, useState } from "react";
 import Cookies from "js-cookie";
+import { RoleContext } from "@/context/roleContext";
 
 type DeleteProps = {
   id?: number | string;
@@ -24,6 +25,8 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
   const [page, setPage] = useState<number>(1);
   const [limit, setLimit] = useState<number>(10);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  const { role } = useContext(RoleContext);
 
   const fetchDataJenis = async () => {
     const res = await setJenis({
@@ -49,6 +52,7 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
   // table
   const headTable = ["No", "Jenis Surat", "Aksi"];
   const tableBodies = ["nama"];
+  role === "personalia" && headTable.splice(2);
   return (
     <div className="flex-1 flex-col max-w-full h-full overflow-auto">
       {isLoading ? (
@@ -64,8 +68,8 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
               limit={limit}
               setEdit={setEdit}
               setDelete={setDelete}
-              ubah={true}
-              hapus={true}
+              ubah={role !== "personalia" && true}
+              hapus={role !== "personalia" && true}
             />
           </div>
           {dtJenis?.last_page > 1 && (

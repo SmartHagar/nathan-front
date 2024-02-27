@@ -4,8 +4,9 @@ import LoadingSpiner from "@/components/loading/LoadingSpiner";
 import PaginationDefault from "@/components/pagination/PaginationDefault";
 import TablesDefault from "@/components/tables/TablesDefault";
 import useSurat from "@/stores/crud/tataUsaha/Surat";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useContext, useEffect, useState } from "react";
 import Cookies from "js-cookie";
+import { RoleContext } from "@/context/roleContext";
 
 type DeleteProps = {
   id?: number | string;
@@ -25,6 +26,8 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search, tipe }) => {
   const [page, setPage] = useState<number>(1);
   const [limit, setLimit] = useState<number>(10);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  const { role } = useContext(RoleContext);
 
   const fetchDataSurat = async () => {
     const res = await setSurat({
@@ -67,6 +70,7 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search, tipe }) => {
     "tgl_surat",
     "gambar",
   ];
+  role === "personalia" && headTable.splice(headTable.length - 1);
   return (
     <div className="flex-1 flex-col max-w-full h-full overflow-auto">
       {isLoading ? (
@@ -82,8 +86,8 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search, tipe }) => {
               limit={limit}
               setEdit={setEdit}
               setDelete={setDelete}
-              ubah={true}
-              hapus={true}
+              ubah={role !== "personalia" && true}
+              hapus={role !== "personalia" && true}
             />
           </div>
           {dtSurat?.last_page > 1 && (

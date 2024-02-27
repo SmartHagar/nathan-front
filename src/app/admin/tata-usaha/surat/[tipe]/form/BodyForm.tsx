@@ -68,7 +68,6 @@ const BodyForm: FC<Props> = ({
         name="no_surat"
         register={register}
         required
-        minLength={3}
         errors={errors.no_surat}
         addClass="col-span-4"
       />

@@ -1,6 +1,6 @@
 /** @format */
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import ShowData from "./ShowData";
 import ButtonPrimary from "@/components/button/ButtonPrimary";
@@ -11,6 +11,7 @@ import { Toaster } from "react-hot-toast";
 import toastShow from "@/utils/toast-show";
 import InputTextSearch from "@/components/input/InputTextSerch";
 import Cookies from "js-cookie";
+import { RoleContext } from "@/context/roleContext";
 
 // type setDelete
 type Delete = {
@@ -27,6 +28,8 @@ const Surat = ({ params }: { params: { tipe: string } }) => {
   const [idDel, setIdDel] = useState<number | string>();
   const [dtEdit, setDtEdit] = useState<any>();
   const [search, setSearch] = useState("");
+
+  const { role } = useContext(RoleContext);
 
   const handleTambah = () => {
     setShowModal(true);
@@ -64,14 +67,16 @@ const Surat = ({ params }: { params: { tipe: string } }) => {
           setShowDel={setShowDelete}
           setDelete={setDelete}
         />
-        <div className="mb-4 flex justify-between">
-          <p className="capitalize">
-            Silahkan Mengolah data Surat {params.tipe}
-          </p>
-          <div>
-            <ButtonPrimary text="Tambah Surat" onClick={handleTambah} />
+        {role !== "personalia" && (
+          <div className="mb-4 flex justify-between">
+            <p className="capitalize">
+              Silahkan Mengolah data Surat {params.tipe}
+            </p>
+            <div>
+              <ButtonPrimary text="Tambah Surat" onClick={handleTambah} />
+            </div>
           </div>
-        </div>
+        )}
         <InputTextSearch
           placeholder="Cari Surat"
           onChange={(e) => setSearch(e)}
