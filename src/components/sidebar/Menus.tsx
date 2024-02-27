@@ -18,7 +18,7 @@ import {
 const menus: Menu[] = [
   {
     name: "Home",
-    href: "/admin/dashboard",
+    href: "/admin",
     icon: <BsHouseDoorFill />,
   },
   {
@@ -110,7 +110,7 @@ const menus: Menu[] = [
 const pegawaiMenus = [
   {
     name: "Home",
-    href: "/pegawai/dashboard",
+    href: "/pegawai",
     icon: <BsHouseDoorFill />,
   },
   {

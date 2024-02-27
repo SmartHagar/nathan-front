@@ -34,7 +34,7 @@ const Login = (props: Props) => {
       if (!cekAuth?.error) {
         const role = cekAuth?.data?.data?.hak;
         // redirect to login
-        router.push(`/${role}/dashboard`);
+        router.push(`/admin`);
       }
     }
     setIsLoading(false);

@@ -27,11 +27,6 @@ const Layout = (props: Props) => {
     if (res?.error) {
       // redirect to login
       route.push("/");
-    } else {
-      const role = Cookies.get("role");
-      if (role !== "admin") {
-        route.push(`/${role}`);
-      }
     }
     return res;
   };
@@ -45,7 +40,6 @@ const Layout = (props: Props) => {
 
   const loadData = async () => {
     const cek = await getCek();
-    console.log({ cek });
     if (!cek?.error) {
       setIsLoading(false);
     }
