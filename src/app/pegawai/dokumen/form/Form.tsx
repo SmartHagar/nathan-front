@@ -9,6 +9,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import BodyForm from "./BodyForm";
 import { PegawaiContext } from "@/context/pegawaiContext";
 import useDokumen from "@/stores/crud/personalia/DokumenPegawai";
+import LoadingSpiner from "@/components/loading/LoadingSpiner";
 
 type Props = {
   showModal: boolean;
@@ -29,6 +30,8 @@ const Form = ({ showModal, setShowModal, dtEdit, tipe }: Props) => {
   const { showPegawai } = useContext(PegawaiContext);
   // state
   const [myFile, setMyFile] = useState<any>();
+  // load
+  const [saveLoad, setSaveLoad] = useState(false);
   // store
   const { addData, updateData } = useDokumen();
   // hook form
@@ -61,6 +64,7 @@ const Form = ({ showModal, setShowModal, dtEdit, tipe }: Props) => {
   }, [showModal, dtEdit]);
   // simpan data
   const onSubmit: SubmitHandler<Inputs> = async (row) => {
+    setSaveLoad(true);
     row.pegawai_id = showPegawai?.id;
     console.log({ row });
     // jika dtEdit tidak kosong maka update
@@ -78,6 +82,10 @@ const Form = ({ showModal, setShowModal, dtEdit, tipe }: Props) => {
       });
       data?.type !== "success" ? null : resetForm();
     }
+
+    setTimeout(() => {
+      setSaveLoad(false);
+    }, 1500);
   };
 
   return (
@@ -103,7 +111,11 @@ const Form = ({ showModal, setShowModal, dtEdit, tipe }: Props) => {
           />
         </div>
         <div>
-          <ButtonPrimary text="Simpan" onClick={handleSubmit(onSubmit)} />
+          {saveLoad ? (
+            <LoadingSpiner />
+          ) : (
+            <ButtonPrimary text="Simpan" onClick={handleSubmit(onSubmit)} />
+          )}
         </div>
       </form>
     </ModalDefault>

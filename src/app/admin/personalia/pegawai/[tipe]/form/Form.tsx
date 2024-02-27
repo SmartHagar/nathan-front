@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import BodyForm from "./BodyForm";
 import usePegawai from "@/stores/crud/personalia/Pegawai";
+import LoadingSpiner from "@/components/loading/LoadingSpiner";
 
 type Props = {
   showModal: boolean;
@@ -39,6 +40,9 @@ const Form = ({ showModal, setShowModal, dtEdit, tipe }: Props) => {
   const [tgl_lahir, setTgl_lahir] = useState<string | Date>(
     new Date("01-01-1980")
   );
+
+  const [saveLoad, setSaveLoad] = useState(false);
+
   const [myFile, setMyFile] = useState<any>();
   // store
   const { addData, updateData } = usePegawai();
@@ -99,6 +103,7 @@ const Form = ({ showModal, setShowModal, dtEdit, tipe }: Props) => {
   }, [showModal, dtEdit]);
   // simpan data
   const onSubmit: SubmitHandler<Inputs> = async (row) => {
+    setSaveLoad(true);
     console.log({ row });
     // jika dtEdit tidak kosong maka update
     if (dtEdit) {
@@ -115,6 +120,9 @@ const Form = ({ showModal, setShowModal, dtEdit, tipe }: Props) => {
       });
       data?.type !== "success" ? null : resetForm();
     }
+    setTimeout(() => {
+      setSaveLoad(false);
+    }, 1500);
   };
 
   return (
@@ -143,7 +151,11 @@ const Form = ({ showModal, setShowModal, dtEdit, tipe }: Props) => {
           />
         </div>
         <div>
-          <ButtonPrimary text="Simpan" onClick={handleSubmit(onSubmit)} />
+          {saveLoad ? (
+            <LoadingSpiner />
+          ) : (
+            <ButtonPrimary text="Simpan" onClick={handleSubmit(onSubmit)} />
+          )}
         </div>
       </form>
     </ModalDefault>
