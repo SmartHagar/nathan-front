@@ -14,6 +14,7 @@ import {
   BsFillSignpost2Fill,
   BsFillWrenchAdjustableCircleFill,
   BsFillMagnetFill,
+  BsPersonFillLock,
 } from "react-icons/bs";
 const menus: Menu[] = [
   {
@@ -137,6 +138,11 @@ const pegawaiMenus = [
     name: "Dokumen",
     href: "/pegawai/dokumen",
     icon: <BsFillSignpost2Fill />,
+  },
+  {
+    name: "Akun",
+    href: "/pegawai/akun",
+    icon: <BsPersonFillLock />,
   },
 ];
 

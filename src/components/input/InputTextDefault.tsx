@@ -13,12 +13,13 @@ type Props = {
   maxLength?: number;
   errors?: any;
   valueAsNumber?: boolean;
-  type?: string;
+  type?: "text" | "password" | "number" | "email" | "hidden";
   readOnly?: boolean;
   placeholder?: string;
   autoComplete?: string;
   addClass?: string;
   value?: string | number;
+  defaultValue?: string;
 };
 
 const InputTextDefault: FC<Props> = ({
@@ -36,6 +37,7 @@ const InputTextDefault: FC<Props> = ({
   autoComplete = "on",
   addClass,
   value,
+  defaultValue,
 }) => {
   const [isTypePassword, setIsTypePassword] = useState(false);
   const tooglePassword = () => {
@@ -67,6 +69,7 @@ const InputTextDefault: FC<Props> = ({
             valueAsNumber,
           })}
           value={value}
+          defaultValue={defaultValue}
         />
         {type === "password" && (
           <div
@@ -96,6 +99,11 @@ const InputTextDefault: FC<Props> = ({
       {errors?.type === "pattern" && (
         <p className="text-red-500 font-inter italic text-sm">
           {label} hanya boleh angka.
+        </p>
+      )}
+      {errors?.message && (
+        <p className="text-red-500 font-inter italic text-sm">
+          {errors?.message}.
         </p>
       )}
     </div>

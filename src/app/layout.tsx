@@ -3,8 +3,8 @@
 import "./globals.css";
 import type { Metadata } from "next";
 export const metadata: Metadata = {
-  title: "Biro SDM Universitas Ottow Geissler",
-  description: "Website Biro SDM Universitas Ottow Geissler",
+  title: "Bidang SDM Universitas Ottow Geissler",
+  description: "Website Bidang SDM Universitas Ottow Geissler",
 };
 
 export default function RootLayout({
