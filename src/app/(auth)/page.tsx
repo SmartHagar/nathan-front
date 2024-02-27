@@ -67,7 +67,11 @@ const Login = (props: Props) => {
       Cookies.set("token", data.token);
       Cookies.set("role", data.hak);
       Cookies.set("user_id", data.id);
-      router.push(`/admin`);
+      if (data.hak === "pegawai") {
+        router.push(`pegawai`);
+      } else {
+        router.push(`/admin`);
+      }
     }
     setTimeout(() => {
       setIsLoading(false);
@@ -82,7 +86,7 @@ const Login = (props: Props) => {
               Selamat datang di
             </h3>
             <h3 className="text-3xl font-bold text-center">
-              Aplikasi Biro SDM
+              Aplikasi Bidang SDM
             </h3>
 
             <span>

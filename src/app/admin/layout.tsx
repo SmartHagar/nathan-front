@@ -28,6 +28,12 @@ const Layout = (props: Props) => {
     if (res?.error) {
       // redirect to login
       route.push("/");
+    } else {
+      const { user } = res?.data?.data;
+      console.log({ user });
+      if (user.hak === "pegawai") {
+        route.push(`pegawai`);
+      }
     }
     return res;
   };

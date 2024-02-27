@@ -66,7 +66,6 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search, tipe }) => {
     "Foto",
     "Aksi",
   ];
-  role !== "personalia" && headTable.splice(6);
   // push NIDN to headTable index 2
   const tableBodies = ["NIK", "nama", "pangkat_gol_ru", "thn_terima", "foto"];
   tipe === "dosen" &&
@@ -116,7 +115,7 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search, tipe }) => {
               setDelete={setDelete}
               ubah={role === "personalia" ? true : false}
               hapus={role === "personalia" ? true : false}
-              costume={role === "personalia" && costume}
+              costume={costume}
             />
           </div>
           {dtPegawai?.last_page > 1 && (
