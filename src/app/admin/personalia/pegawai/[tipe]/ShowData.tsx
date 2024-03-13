@@ -85,11 +85,13 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search, tipe }) => {
           className="cursor-pointer hover:text-link"
           onClick={() => cetakPDF(row.id)}
         />
-        <BsInfoCircle
-          size={20}
-          className="cursor-pointer hover:text-link"
-          onClick={() => (setRowData(row), setShowModal(true))}
-        />
+        {role === "personalia" && (
+          <BsInfoCircle
+            size={20}
+            className="cursor-pointer hover:text-link"
+            onClick={() => (setRowData(row), setShowModal(true))}
+          />
+        )}
       </>
     );
   };

@@ -1,0 +1,21 @@
+{
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/(auth)/page": "app/(auth)/page.js",
+  "/admin/(dashboard)/page": "app/admin/(dashboard)/page.js",
+  "/pegawai/(dashboard)/page": "app/pegawai/(dashboard)/page.js",
+  "/pegawai/akun/page": "app/pegawai/akun/page.js",
+  "/admin/jabatan/page": "app/admin/jabatan/page.js",
+  "/pegawai/dokumen/page": "app/pegawai/dokumen/page.js",
+  "/admin/pangkat/page": "app/admin/pangkat/page.js",
+  "/admin/personalia/dokumen/page": "app/admin/personalia/dokumen/page.js",
+  "/admin/tata-usaha/dokumen/page": "app/admin/tata-usaha/dokumen/page.js",
+  "/admin/tata-usaha/jenis/page": "app/admin/tata-usaha/jenis/page.js",
+  "/pegawai/riwayat/pekerjaan/page": "app/pegawai/riwayat/pekerjaan/page.js",
+  "/pegawai/riwayat/jabatan/page": "app/pegawai/riwayat/jabatan/page.js",
+  "/pegawai/riwayat/pendidikan/page": "app/pegawai/riwayat/pendidikan/page.js",
+  "/admin/personalia/riwayat/jabatan/page": "app/admin/personalia/riwayat/jabatan/page.js",
+  "/admin/personalia/riwayat/pendidikan/page": "app/admin/personalia/riwayat/pendidikan/page.js",
+  "/admin/personalia/riwayat/pekerjaan/page": "app/admin/personalia/riwayat/pekerjaan/page.js",
+  "/admin/personalia/pegawai/[tipe]/page": "app/admin/personalia/pegawai/[tipe]/page.js",
+  "/admin/tata-usaha/surat/[tipe]/page": "app/admin/tata-usaha/surat/[tipe]/page.js"
+}
