@@ -15,12 +15,17 @@ type Props = {
 
 type Store = {
   dtPegawai: any;
-  setPegawai: ({ page = 1, limit = 10, search, tipe }: Props) => Promise<{
+  setPegawai: ({ page, limit, search, tipe }: Props) => Promise<{
     status: string;
     data?: {};
     error?: {};
   }>;
-  setApiDokumenPegawai: ({ page = 1, search, id }: Props) => Promise<{
+  setApiDokumenPegawai: ({ page, search, id }: Props) => Promise<{
+    status: string;
+    data?: {};
+    error?: {};
+  }>;
+  setTotalTipe: () => Promise<{
     status: string;
     data?: {};
     error?: {};
@@ -68,6 +73,25 @@ const usePegawaiApi = create(
         useDokumen.getState().setDokumen({
           page,
           search,
+        });
+        set((state) => ({ ...state, dtPegawai: response.data.data }));
+        return {
+          status: "berhasil",
+          data: response.data,
+        };
+      } catch (error: any) {
+        return {
+          status: "error",
+          error: error.response.data,
+        };
+      }
+    },
+
+    setTotalTipe: async () => {
+      try {
+        const response = await api({
+          method: "get",
+          url: `/personalia/pegawai/total_tipe`,
         });
         set((state) => ({ ...state, dtPegawai: response.data.data }));
         return {

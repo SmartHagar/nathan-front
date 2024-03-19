@@ -74,6 +74,27 @@ const usePegawaiApi = (0,zustand__WEBPACK_IMPORTED_MODULE_2__/* .create */ .Ue)(
                     error: error.response.data
                 };
             }
+        },
+        setTotalTipe: async ()=>{
+            try {
+                const response = await (0,_services_baseURL__WEBPACK_IMPORTED_MODULE_0__/* .api */ .hi)({
+                    method: "get",
+                    url: `/personalia/pegawai/total_tipe`
+                });
+                set((state)=>({
+                        ...state,
+                        dtPegawai: response.data.data
+                    }));
+                return {
+                    status: "berhasil",
+                    data: response.data
+                };
+            } catch (error) {
+                return {
+                    status: "error",
+                    error: error.response.data
+                };
+            }
         }
     })));
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (usePegawaiApi);

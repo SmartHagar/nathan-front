@@ -382,45 +382,109 @@ __webpack_require__.r(__webpack_exports__);
 /***/ 14467:
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 55603))
+Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 76692))
 
 /***/ }),
 
-/***/ 55603:
+/***/ 76692:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+// ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(56786);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(18038);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(97270);
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, {
+  "default": () => (/* binding */ page)
+});
+
+// EXTERNAL MODULE: external "next/dist/compiled/react/jsx-runtime"
+var jsx_runtime_ = __webpack_require__(56786);
+// EXTERNAL MODULE: external "next/dist/compiled/react"
+var react_ = __webpack_require__(18038);
+// EXTERNAL MODULE: ./node_modules/js-cookie/dist/js.cookie.mjs
+var js_cookie = __webpack_require__(97270);
+// EXTERNAL MODULE: ./src/stores/api/Pegawai.ts
+var Pegawai = __webpack_require__(89456);
+// EXTERNAL MODULE: ./node_modules/@react-spring/web/dist/react-spring_web.modern.mjs + 3 modules
+var react_spring_web_modern = __webpack_require__(7684);
+;// CONCATENATED MODULE: ./src/components/animated/AnimatedNumber.tsx
 /** @format */ /* __next_internal_client_entry_do_not_use__ default auto */ 
 
 
+const AnimatedNumber = ({ endValue, animationConfig, addClass })=>{
+    const [refNumber, inView] = (0,react_spring_web_modern/* useInView */.YD)({
+        once: true
+    });
+    const animNumber = (0,react_spring_web_modern/* useSpring */.q_)({
+        number: inView ? endValue : 0,
+        from: {
+            number: 0
+        },
+        config: animationConfig,
+        delay: 1000
+    });
+    return /*#__PURE__*/ jsx_runtime_.jsx(react_spring_web_modern/* animated */.q.span, {
+        ref: refNumber,
+        className: addClass,
+        children: animNumber.number.to((value)=>Math.floor(value))
+    });
+};
+/* harmony default export */ const animated_AnimatedNumber = (AnimatedNumber);
+
+;// CONCATENATED MODULE: ./src/app/admin/(dashboard)/page.tsx
+/** @format */ /* __next_internal_client_entry_do_not_use__ default auto */ 
+
+
+
+
+
 function Dashboard({}) {
-    const [role, setRole] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)("");
-    (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(()=>{
-        const role = js_cookie__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z.get("role") || "";
+    const [role, setRole] = (0,react_.useState)("");
+    // store
+    const { setTotalTipe, dtPegawai } = (0,Pegawai/* default */.Z)();
+    (0,react_.useEffect)(()=>{
+        const role = js_cookie/* default */.Z.get("role") || "";
         setRole(role);
+        setTotalTipe();
+        return ()=>{};
     }, []);
-    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("h5", {
-            children: [
-                "Selamat datang ",
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                    className: "capitalize",
-                    children: role
-                })
-            ]
-        })
+    console.log({
+        dtPegawai
+    });
+    return /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+        children: [
+            /*#__PURE__*/ (0,jsx_runtime_.jsxs)("h5", {
+                children: [
+                    "Selamat datang ",
+                    /*#__PURE__*/ jsx_runtime_.jsx("span", {
+                        className: "capitalize",
+                        children: role
+                    })
+                ]
+            }),
+            /*#__PURE__*/ jsx_runtime_.jsx("div", {
+                className: "flex md:flex-row flex-col gap-2 mt-4 items-center md:justify-center",
+                children: dtPegawai?.map((item, index)=>// card
+                    /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+                        className: "flex flex-col gap-2 gap-y-6 items-center bg-primary/10 p-2 rounded-lg w-40 h-36 justify-center",
+                        children: [
+                            /*#__PURE__*/ jsx_runtime_.jsx("p", {
+                                className: "capitalize text-xl",
+                                children: item.tipe
+                            }),
+                            /*#__PURE__*/ jsx_runtime_.jsx(animated_AnimatedNumber, {
+                                endValue: item.total,
+                                addClass: "text-2xl font-bold",
+                                animationConfig: react_spring_web_modern/* config */.vc.slow
+                            })
+                        ]
+                    }, index))
+            })
+        ]
     });
 }
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Dashboard);
+/* harmony default export */ const page = (Dashboard);
 
 
 /***/ }),
@@ -458,7 +522,7 @@ const __default__ = proxy.default;
 var __webpack_require__ = require("../../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [1697,5750,1621,6253,2491,5809], () => (__webpack_exec__(2948)));
+var __webpack_exports__ = __webpack_require__.X(0, [1697,5750,1621,7684,6253,2491,5809,2861], () => (__webpack_exec__(2948)));
 module.exports = __webpack_exports__;
 
 })();
