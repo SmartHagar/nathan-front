@@ -400,11 +400,11 @@ __webpack_require__.r(__webpack_exports__);
 /***/ 91315:
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 47600))
+Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 8401))
 
 /***/ }),
 
-/***/ 47600:
+/***/ 8401:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -619,142 +619,14 @@ var dist_index_esm = __webpack_require__(71031);
 var InputDate = __webpack_require__(39109);
 // EXTERNAL MODULE: ./src/components/input/InputFile.tsx
 var InputFile = __webpack_require__(68346);
-;// CONCATENATED MODULE: ./src/components/input/InputRadio.tsx
-/** @format */ 
-
-const InputRadio = ({ value, register, required, name, defaultChecked, id, errors })=>{
-    return /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-        children: [
-            /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                className: "flex gap-1 items-start",
-                children: [
-                    /*#__PURE__*/ jsx_runtime_.jsx("input", {
-                        type: "radio",
-                        value: value,
-                        id: id.toString(),
-                        name: name,
-                        ...register(name, {
-                            required
-                        }),
-                        className: `form-radio h-6 w-4 text-primary`,
-                        defaultChecked: defaultChecked
-                    }),
-                    /*#__PURE__*/ jsx_runtime_.jsx("label", {
-                        htmlFor: id.toString(),
-                        children: value
-                    })
-                ]
-            }),
-            errors?.type === "required" && /*#__PURE__*/ jsx_runtime_.jsx("p", {
-                className: "text-red-500 font-inter italic text-sm",
-                children: "Tidak boleh kosong"
-            })
-        ]
-    });
-};
-/* harmony default export */ const input_InputRadio = (InputRadio);
-
+// EXTERNAL MODULE: ./src/components/input/InputRadio.tsx
+var InputRadio = __webpack_require__(23464);
 // EXTERNAL MODULE: ./src/components/select/SelectFromDB.tsx
 var SelectFromDB = __webpack_require__(39590);
-// EXTERNAL MODULE: ./node_modules/react-select/dist/react-select.esm.js
-var react_select_esm = __webpack_require__(67646);
-// EXTERNAL MODULE: ./node_modules/moment/moment.js
-var moment = __webpack_require__(17370);
-var moment_default = /*#__PURE__*/__webpack_require__.n(moment);
-;// CONCATENATED MODULE: ./src/components/select/SelectTahun.tsx
-/** @format */ 
-
-
-
-
-const SelectTahun = ({ label, start = 2012, end = moment_default()().format("YYYY"), control, required, name, errors, addClass, menuPosition = "fixed", placeholder = "Pilih Tahun" })=>{
-    const pilihTahun = ()=>{
-        const array = [];
-        for(let index = end; index >= start; index--){
-            array.push({
-                value: index,
-                label: index
-            });
-        }
-        return array;
-    };
-    return /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-        className: addClass,
-        children: [
-            /*#__PURE__*/ jsx_runtime_.jsx("label", {
-                className: "text-sm font-medium text-gray-700 tracking-wide",
-                children: label
-            }),
-            required && /*#__PURE__*/ jsx_runtime_.jsx("span", {
-                className: "ml-1 text-red-600",
-                children: "*"
-            }),
-            /*#__PURE__*/ jsx_runtime_.jsx(dist_index_esm/* Controller */.Qr, {
-                name: name,
-                control: control,
-                rules: {
-                    required
-                },
-                render: ({ field: { onChange, value, name, ref } })=>/*#__PURE__*/ jsx_runtime_.jsx(react_select_esm/* default */.ZP, {
-                        isClearable: true,
-                        isSearchable: true,
-                        options: pilihTahun(),
-                        placeholder: placeholder,
-                        menuPosition: menuPosition,
-                        menuPortalTarget: document.body,
-                        ref: ref,
-                        value: value ? pilihTahun().find((x)=>x.value === value) : value,
-                        onChange: (option)=>onChange(option ? option.value : option)
-                    })
-            }),
-            errors?.type === "required" && /*#__PURE__*/ jsx_runtime_.jsx("p", {
-                className: "text-red-500 font-inter italic text-sm",
-                children: "Tahun tidak boleh kosong"
-            })
-        ]
-    });
-};
-/* harmony default export */ const select_SelectTahun = (SelectTahun);
-
-// EXTERNAL MODULE: ./node_modules/zustand/esm/index.mjs + 1 modules
-var esm = __webpack_require__(13998);
-// EXTERNAL MODULE: ./node_modules/zustand/esm/middleware.mjs
-var middleware = __webpack_require__(88658);
-;// CONCATENATED MODULE: ./src/stores/api/Pangkat.ts
-/** @format */ 
-
-
-const usePangkatApi = (0,esm/* create */.Ue)((0,middleware/* devtools */.mW)((set, get)=>({
-        dtPangkat: [],
-        setPangkat: async ({ page = 1, limit = 10, search })=>{
-            try {
-                const response = await (0,baseURL/* api */.hi)({
-                    method: "get",
-                    url: `/personalia/pangkat`,
-                    params: {
-                        limit,
-                        page,
-                        search
-                    }
-                });
-                set((state)=>({
-                        ...state,
-                        dtPangkat: response.data
-                    }));
-                return {
-                    status: "berhasil",
-                    data: response.data
-                };
-            } catch (error) {
-                return {
-                    status: "error",
-                    error: error.response.data
-                };
-            }
-        }
-    })));
-/* harmony default export */ const Pangkat = (usePangkatApi);
-
+// EXTERNAL MODULE: ./src/components/select/SelectTahun.tsx
+var SelectTahun = __webpack_require__(49253);
+// EXTERNAL MODULE: ./src/stores/api/Pangkat.ts
+var Pangkat = __webpack_require__(22933);
 // EXTERNAL MODULE: ./node_modules/react-datepicker/dist/react-datepicker.css
 var react_datepicker = __webpack_require__(3349);
 ;// CONCATENATED MODULE: ./src/app/admin/personalia/pegawai/[tipe]/form/BodyForm.tsx
@@ -769,7 +641,7 @@ var react_datepicker = __webpack_require__(3349);
 
 
 const BodyForm = ({ register, errors, control, dtEdit, watch, setValue, showModal, tgl_lahir, setTgl_lahir, tipe, myFile, setMyFile })=>{
-    const { setPangkat, dtPangkat } = Pangkat();
+    const { setPangkat, dtPangkat } = (0,Pangkat/* default */.Z)();
     // memanggil data pangkat
     const fetchDataPangkat = async ({ search })=>{
         await setPangkat({
@@ -835,7 +707,7 @@ const BodyForm = ({ register, errors, control, dtEdit, watch, setValue, showModa
                         /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
                             className: "flex gap-2",
                             children: [
-                                /*#__PURE__*/ jsx_runtime_.jsx(input_InputRadio, {
+                                /*#__PURE__*/ jsx_runtime_.jsx(InputRadio/* default */.Z, {
                                     id: "Laki-laki",
                                     name: "jenkel",
                                     value: "Laki-laki",
@@ -843,7 +715,7 @@ const BodyForm = ({ register, errors, control, dtEdit, watch, setValue, showModa
                                     required: true,
                                     defaultChecked: dtEdit?.jenkel === "Laki-laki"
                                 }),
-                                /*#__PURE__*/ jsx_runtime_.jsx(input_InputRadio, {
+                                /*#__PURE__*/ jsx_runtime_.jsx(InputRadio/* default */.Z, {
                                     id: "Perempuan",
                                     name: "jenkel",
                                     value: "Perempuan",
@@ -897,7 +769,7 @@ const BodyForm = ({ register, errors, control, dtEdit, watch, setValue, showModa
                 errors: errors.pend_terakhir,
                 addClass: "col-span-4 lg:col-span-2"
             }),
-            /*#__PURE__*/ jsx_runtime_.jsx(select_SelectTahun, {
+            /*#__PURE__*/ jsx_runtime_.jsx(SelectTahun/* default */.Z, {
                 label: "Tahun Terima",
                 name: "thn_terima",
                 control: control,
@@ -1257,7 +1129,7 @@ const __default__ = proxy.default;
 var __webpack_require__ = require("../../../../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [1697,5750,1621,1031,7370,429,2357,4051,5435,1072,1995,7646,6253,2491,9269,5987,5809,7873,9109,9590,8346], () => (__webpack_exec__(95047)));
+var __webpack_exports__ = __webpack_require__.X(0, [1697,5750,1031,1621,429,7370,2357,4051,5435,1072,1995,7646,6253,2491,9269,2868,1758,5809,9109,7873,9590,8346,3171], () => (__webpack_exec__(95047)));
 module.exports = __webpack_exports__;
 
 })();

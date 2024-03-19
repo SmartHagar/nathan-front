@@ -202,6 +202,42 @@ const usePegawai = (0,zustand__WEBPACK_IMPORTED_MODULE_2__/* .create */ .Ue)((0,
                     data: error.response.data
                 };
             }
+        },
+        // update from pegawai
+        updatePegawai: async (id, row)=>{
+            delete row.id;
+            const formData = row?.foto ? get().setFormData(row) : row;
+            const token = await _stores_auth_login__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z.getState().setToken();
+            const headersImg = {
+                "Content-Type": "multipart/form-data",
+                Authorization: `Bearer ${token}`
+            };
+            try {
+                const response = await (0,_services_baseURL__WEBPACK_IMPORTED_MODULE_0__/* .crud */ .Sj)({
+                    url: `/personalia/pegawai/${id}`,
+                    method: "post",
+                    headers: row?.foto ? headersImg : {
+                        Authorization: `Bearer ${token}`
+                    },
+                    data: formData,
+                    params: {
+                        _method: "PUT"
+                    }
+                });
+                set((state)=>({
+                        ...state,
+                        showPegawai: response.data.data
+                    }));
+                return {
+                    status: "berhasil update",
+                    data: response.data
+                };
+            } catch (error) {
+                return {
+                    status: "error",
+                    data: error.response.data
+                };
+            }
         }
     })));
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (usePegawai);

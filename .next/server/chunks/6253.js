@@ -56,8 +56,8 @@ const LoadingSpiner = ()=>{
 /* unused harmony exports storage, url_auth, url_api, url_crud, url_storage */
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(53071);
 /** @format */ 
-const BASE_URL = "https://back.nathan-fst.my.id";
-// const BASE_URL = "http://127.0.0.1:8000";
+// const BASE_URL = "https://back.nathan-fst.my.id";
+const BASE_URL = "http://127.0.0.1:8000";
 const url_auth = `${BASE_URL}/auth`;
 const url_api = `${BASE_URL}/api`;
 const url_crud = `${BASE_URL}/crud`;

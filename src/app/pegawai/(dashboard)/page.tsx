@@ -1,6 +1,6 @@
 /** @format */
 "use client";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import { PegawaiContext } from "@/context/pegawaiContext";
 import Image from "next/image";
 import { BASE_URL } from "@/services/baseURL";
@@ -10,11 +10,15 @@ import useRiwayatPendidikanApi from "@/stores/api/RiwayatPendidikan";
 import useRiwayatPekerjaanApi from "@/stores/api/RiwayatPekerjaan";
 import ButtonPrimary from "@/components/button/ButtonPrimary";
 import ButtonSecondary from "@/components/button/ButtonSecondary";
+import Form from "./form/Form";
+import { Toaster } from "react-hot-toast";
 
 type Props = {};
 
 const Dashboard = (props: Props) => {
   const { showPegawai } = useContext(PegawaiContext);
+  const [dtEdit, setDtEdit] = useState<any>();
+  const [showModal, setShowModal] = useState(false);
   // store
   const { setRiwayatJabatan, dtRiwayatJabatan } = useRiwayatJabatanApi();
   const { setRiwayatPendidikan, dtRiwayatPendidikan } =
@@ -33,12 +37,10 @@ const Dashboard = (props: Props) => {
     await setRiwayatPekerjaan(showPegawai?.id as number);
   };
 
-  useEffect(() => {
+  useMemo(() => {
     fetchDtRiwayatJabatan();
     fetchDtRiwayatPendidikan();
     fetchDtRiwayatPekerjaan();
-
-    return () => {};
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showPegawai?.id]);
 
@@ -47,8 +49,20 @@ const Dashboard = (props: Props) => {
     window.open(`${BASE_URL}/export/biodata/${showPegawai?.id}`, "_blank");
   };
 
+  const setEdit = (row: any) => {
+    setShowModal(true);
+    setDtEdit(row);
+  };
+
   return (
     <section className="text-gray-600 body-font h-full overflow-auto">
+      <Toaster />
+      <Form
+        dtEdit={dtEdit}
+        showModal={showModal}
+        setShowModal={setShowModal}
+        tipe={showPegawai?.tipe as string}
+      />
       <div className="container mx-auto flex px-5 pt-14 pb-4 md:flex-row flex-col items-center  h-full">
         <div className="lg:max-w-xs md:w-1/2 w-5/6 mb-10 md:mb-0">
           {showPegawai?.foto && (
@@ -60,6 +74,9 @@ const Dashboard = (props: Props) => {
               height={100}
             />
           )}
+          <div className="mt-2 text-center">
+            <ButtonSecondary text="Ubah" onClick={() => setEdit(showPegawai)} />
+          </div>
         </div>
         <div className="lg:flex-grow md:w-1/2 md:pl-16 flex flex-col md:text-left h-full">
           <h3 className="">{showPegawai?.nama}</h3>
