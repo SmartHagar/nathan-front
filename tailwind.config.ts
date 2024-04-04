@@ -19,6 +19,9 @@ const config: Config = {
       },
       backgroundImage: {
         login: "url('/images/bg/login.jpg')",
+        main: "url('/images/bg/main.png')",
+        asset: "url('/images/bg/asset.png')",
+        sdm: "url('/images/bg/sdm.png')",
       },
     },
   },
