@@ -66,14 +66,14 @@ const Pegawai = () => {
           <div>
             <p>
               <span className="capitalize">
-                Silahkan Mengolah data pendidikan pegawai
+                Silahkan Mengolah data pekerjaan pegawai
               </span>
             </p>
           </div>
           <div>
             <ButtonPrimary
               addClass="capitalize"
-              text={`Tambah Pendidikan`}
+              text={`Tambah Pekerjaan`}
               onClick={handleTambah}
             />
           </div>

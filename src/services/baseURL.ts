@@ -3,6 +3,7 @@
 import axios from "axios";
 
 const BASE_URL = "https://back.nathan-fst.my.id";
+// const BASE_URL = "https://back.edom.fstuogp.com";
 // const BASE_URL = "http://127.0.0.1:8000";
 const url_auth = `${BASE_URL}/auth`;
 const url_api = `${BASE_URL}/api`;

@@ -124,7 +124,7 @@ const PegawaiSide = () => {
     Cookies.remove("token");
     Cookies.remove("role");
     // redirect to roote page
-    router.push("/");
+    router.push("/sdm");
     setIsLoading(false);
   };
 
@@ -192,7 +192,7 @@ const PegawaiSide = () => {
           ) : (
             <button
               onClick={handleSingout}
-              className="flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg text-primary hover:underline hover:text-gray-200"
+              className="flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg text-primary hover:underline hover:text-gray-200 bg-white"
             >
               <span>Sign Out</span>
             </button>

@@ -206,7 +206,7 @@ const PegawaiSide = ()=>{
         js_cookie/* default */.Z.remove("token");
         js_cookie/* default */.Z.remove("role");
         // redirect to roote page
-        router.push("/");
+        router.push("/sdm");
         setIsLoading(false);
     };
     return /*#__PURE__*/ (0,jsx_runtime_.jsxs)("aside", {
@@ -281,7 +281,7 @@ const PegawaiSide = ()=>{
                             children: "Loading..."
                         }) : /*#__PURE__*/ jsx_runtime_.jsx("button", {
                             onClick: handleSingout,
-                            className: "flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg text-primary hover:underline hover:text-gray-200",
+                            className: "flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg text-primary hover:underline hover:text-gray-200 bg-white",
                             children: /*#__PURE__*/ jsx_runtime_.jsx("span", {
                                 children: "Sign Out"
                             })

@@ -579,8 +579,6 @@ const BodyForm = ({ register, errors, control, dtEdit, watch, setValue, showModa
                 control: control,
                 startDate: seles,
                 setStartDate: setSeles,
-                required: true,
-                errors: errors.seles,
                 addClass: "col-span-4 lg:col-span-2"
             })
         ]
@@ -775,14 +773,14 @@ const page_Pegawai = ()=>{
                                 children: /*#__PURE__*/ jsx_runtime_.jsx("p", {
                                     children: /*#__PURE__*/ jsx_runtime_.jsx("span", {
                                         className: "capitalize",
-                                        children: "Silahkan Mengolah data pendidikan pegawai"
+                                        children: "Silahkan Mengolah data pekerjaan pegawai"
                                     })
                                 })
                             }),
                             /*#__PURE__*/ jsx_runtime_.jsx("div", {
                                 children: /*#__PURE__*/ jsx_runtime_.jsx(ButtonPrimary/* default */.Z, {
                                     addClass: "capitalize",
-                                    text: `Tambah Pendidikan`,
+                                    text: `Tambah Pekerjaan`,
                                     onClick: handleTambah
                                 })
                             })

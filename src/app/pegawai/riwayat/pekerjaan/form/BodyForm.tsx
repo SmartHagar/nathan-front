@@ -88,8 +88,6 @@ const BodyForm: FC<Props> = ({
         control={control}
         startDate={seles}
         setStartDate={setSeles}
-        required
-        errors={errors.seles}
         addClass="col-span-4 lg:col-span-2"
       />
     </>
