@@ -23,6 +23,9 @@ const config: Config = {
         asset: "url('/images/bg/asset.png')",
         sdm: "url('/images/bg/sdm.png')",
       },
+      fontFamily: {
+        vidaloka: ["Vidaloka", "sans-serif"],
+      },
     },
   },
   plugins: [require("tailwind-scrollbar")({ nocompatible: true })],

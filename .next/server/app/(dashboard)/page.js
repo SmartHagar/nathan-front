@@ -319,33 +319,33 @@ __webpack_require__.r(__webpack_exports__);
 
 const page = (props)=>{
     return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-        className: "min-h-screen w-full bg-main bg-cover bg-bottom flex flex-col",
+        className: "min-h-screen w-full bg-main bg-cover bg-bottom flex flex-col font-vidaloka",
         children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-            className: "h-full grow w-full flex flex-col justify-center items-center gap-8",
+            className: "h-full grow w-full flex flex-col justify-center items-center gap-20",
             children: [
                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                    className: "mt-10 text-gray-900",
+                    className: "mt-10 mx-2 bg-gradient-to-r from-primary via-black to-secondary text-transparent bg-clip-text animate-blink",
                     children: [
-                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                            className: "text-center",
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
+                            className: "text-center text-2xl md:text-3xl",
                             children: "Selamat datang di website"
                         }),
-                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                            className: "text-center",
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h1", {
+                            className: "text-center text-3xl md:text-5xl",
                             children: "Biro Umum"
                         })
                     ]
                 }),
                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                    className: "flex flex-col gap-6 md:flex-row",
+                    className: "flex flex-col gap-6 md:flex-row animate-blink",
                     children: [
                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                             className: "relative h-56 w-80 rounded-lg cursor-pointer shadow-xl backdrop-blur-sm bg-white/10",
                             children: [
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                     className: "absolute inset-0 flex items-center justify-center",
-                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h4", {
-                                        className: " ",
+                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
+                                        className: "bg-gradient-to-r from-primary via-black to-secondary text-transparent bg-clip-text",
                                         children: "Asset"
                                     })
                                 }),
@@ -368,13 +368,13 @@ const page = (props)=>{
                             ]
                         }),
                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)((next_link__WEBPACK_IMPORTED_MODULE_2___default()), {
-                            href: "/auth_sdm",
+                            href: "/sdm",
                             className: "relative h-56 w-80 rounded-lg cursor-pointer shadow-xl backdrop-blur-sm bg-white/10",
                             children: [
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                     className: "absolute inset-0 flex items-center justify-center",
-                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h4", {
-                                        className: "",
+                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
+                                        className: "bg-gradient-to-r from-primary via-black to-secondary text-transparent bg-clip-text",
                                         children: "SDM"
                                     })
                                 }),
@@ -440,7 +440,7 @@ const __default__ = proxy.default;
 var __webpack_require__ = require("../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [1697,6601,1621,3790], () => (__webpack_exec__(82587)));
+var __webpack_exports__ = __webpack_require__.X(0, [1697,6601,1621,6166], () => (__webpack_exec__(82587)));
 module.exports = __webpack_exports__;
 
 })();
