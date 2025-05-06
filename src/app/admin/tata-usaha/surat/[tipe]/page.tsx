@@ -10,7 +10,6 @@ import useSurat from "@/stores/crud/tataUsaha/Surat";
 import { Toaster } from "react-hot-toast";
 import toastShow from "@/utils/toast-show";
 import InputTextSearch from "@/components/input/InputTextSerch";
-import Cookies from "js-cookie";
 import { RoleContext } from "@/context/roleContext";
 
 // type setDelete
